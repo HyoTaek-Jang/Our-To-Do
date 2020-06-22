@@ -462,3 +462,15 @@ a{
     display: block;
     visibility: visible;
 }
+
+/* Mediaqueries */
+@media screen and (max-width: 768px) { 
+    .container-flex-media{
+        flex-direction: column;
+    }
+
+    .l_wrapper{
+        width: 100%;
+    }
+    
+}
