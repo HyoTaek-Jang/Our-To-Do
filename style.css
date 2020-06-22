@@ -255,13 +255,34 @@ a{
     text-indent: -9999px;
 }
 
-.icon-cloudy{
+.clouds{
     background-image: url(./image/cloudy_w.png);
 }
 
-.icon-sunny{
+.clear{
     background-image: url(./image/sunny_w.png);
 }
+
+.thunder{
+    background-image: url(./image/rainy_w.png);
+}
+
+.drizzle{
+    background-image: url(./image/wet_w.png);   
+}
+
+.rain{
+    background-image: url(./image/rainy_w.png);
+}
+
+.snow{
+    background-image: url(./image/snowing_w.png);
+}
+
+.atmosphere{
+    background-image: url(./image/sunny_cloudy_w.png);
+}
+
 
 .main-weather-day{
     font-size: 23px;
