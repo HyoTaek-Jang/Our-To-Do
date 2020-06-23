@@ -55,7 +55,7 @@ function askForWeatherIcon(targetIcon ,weatherId){
         targetIcon.classList.add('clear');
     }
     else{
-        targetIcon.classList.add('cluods');
+        targetIcon.classList.add('clouds');
     }
   
   
