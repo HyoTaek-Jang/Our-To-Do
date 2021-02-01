@@ -43,7 +43,7 @@ function makeBookmarkBox(URL, TITLE){
         B_hyper.classList.add('bookmark-content-hyper');
         B_del.classList.add('bookmark-content-del');
     
-        parentCB.appendChild(B_contentBox);
+        parentCB.appendChild(B_contentBox); 
         B_contentBox.appendChild(B_hyper);
         B_contentBox.appendChild(B_del);
     
@@ -68,6 +68,11 @@ function saveBookmark(){
 }
 
 function loadBookmark(){
+
+
+
+
+    
 
     const currentBookmark = localStorage.getItem("bookmark");
     if(currentBookmark !== null){

@@ -19,6 +19,7 @@ function getWeather(lat,lon){
                 tmrTempMax : json.daily[0].temp.max,
                 tmrTempMin : json.daily[0].temp.min,
                 tmrWeather : json.daily[0].weather[0].id
+                
             };
 
             todayTemp.innerHTML = `${weatherData.currentTemp}`;
