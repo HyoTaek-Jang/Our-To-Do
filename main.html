@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="Reset.css" />
+    <!-- Reset css -->
+    <link rel="stylesheet" href="common.css" />
+
+    <link rel="stylesheet" href="main.css" />
+
+    <link rel="shortcut icon" type="" href="./image/favicon.ico" />
+
+    <title>Our-To-Do</title>
+  </head>
+  <body>
+    <div class="container flex container-flex-media">
+      <div class="l_wrapper">
+        <div class="toDo">
+          <div class="toDo-header">
+            <h2>To-Do-List</h2>
+            <h3 class="toggle">SHOW</h3>
+          </div>
+
+          <span class="lineShort"> </span>
+
+          <div class="l_contentBox toDo-CB show"></div>
+
+          <span class="lineLong"> </span>
+
+          <div class="toDo-input flex">
+            <form class="todoForm" action="">
+              <div class="toDo-input-value">
+                <input type="text" placeholder="Write Here" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="l_wrapper">
+        <div class="main">
+          <div class="main-weather flex">
+            <div class="tool-bar">
+              <input type="button" class="clearAll" value="reset" /><input
+                type="button"
+                value="logout"
+              />
+            </div>
+            <div class="flex">
+              <div class="main-weather-content">
+                <div class="main-weather-icon today-icon icon-cloudy">
+                  icon today
+                </div>
+                <p class="main-weather-day today">today</p>
+                <div class="main-weather-temp today-temp">None</div>
+              </div>
+
+              <div class="main-weather-content">
+                <div class="main-weather-icon tmr-icon icon-sunny">
+                  icon tmr
+                </div>
+                <p class="main-weather-day tmr">tmr</p>
+                <div class="main-weather-temp tmr-temp">None</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="main-clock">11:00</div>
+
+          <div class="main-welcome">welcome john!</div>
+
+          <div class="main-enterName">
+            <p>What's your name?</p>
+            <form action="">
+              <input type="text" class="main-input" placeholder="Name" />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="l_wrapper">
+        <div class="bookmark">
+          <div class="bookmark-header">
+            <h2>Bookmark</h2>
+            <h3 class="toggle">SHOW</h3>
+          </div>
+
+          <span class="lineShort"> </span>
+
+          <div class="l_contentBox bookmark-CB show"></div>
+
+          <span class="lineLong"> </span>
+
+          <div class="bookmark-form">
+            <form class="flex bookmarkForm" action="">
+              <div class="bookmark-input">
+                <input class="B_title" type="text" placeholder="Write Title" />
+              </div>
+              <div class="bookmark-input">
+                <input class="B_URL" type="text" placeholder="Write URL" />
+              </div>
+              <input type="submit" style="display: none" />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <script src="./clock.js"></script>
+      <script src="./greeting.js"></script>
+      <script src="./todo.js"></script>
+      <script src="./bookmark.js"></script>
+      <script src="weather.js"></script>
+    </div>
+  </body>
+</html>
