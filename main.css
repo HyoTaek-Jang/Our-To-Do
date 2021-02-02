@@ -17,6 +17,35 @@
   cursor: pointer;
 } */
 
+.navigator {
+  margin: 0 40px;
+  border-bottom: 2px solid white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tool-bar {
+  height: 50px;
+  display: flex;
+}
+
+.tool-bar-home {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background-image: url(./image/home.png);
+  background-position: center;
+  background-size: cover;
+  text-indent: -9999px;
+  margin-top: 7.5px;
+  margin-left: 10px;
+}
+
+.tool-bar input {
+  margin: 10px 10px 10px 30px;
+  font-size: 18px;
+}
+
 /* To-Do-list start */
 .toDo {
   background-color: #999;
@@ -128,11 +157,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.tool-bar input {
-  margin: 10px 30px 0px 30px;
-  font-size: 18px;
 }
 
 .main-weather-content {

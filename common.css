@@ -86,7 +86,7 @@ a {
 }
 
 .l_contentBox {
-  height: 500px;
+  height: 450px;
   overflow: scroll;
   font-family: seoulHanL;
   visibility: hidden;
