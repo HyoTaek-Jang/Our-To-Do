@@ -4,6 +4,15 @@
   margin-top: 0;
   padding-top: 5%;
   color: rgba(255, 255, 255, 1);
+  height: 100px;
+  line-height: 100px;
+}
+
+.main-title img {
+  line-height: 100px;
+  margin-bottom: 15px;
+  vertical-align: middle;
+  /* margin: 15px; */
 }
 
 .login-page {

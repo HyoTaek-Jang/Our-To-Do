@@ -1,4 +1,7 @@
 /* component */
+.wrapeer {
+  height: 100%;
+}
 .vertical {
   height: 100%;
   display: flex;
