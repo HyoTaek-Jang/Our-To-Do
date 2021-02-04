@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/Reset.css" />
+    <!-- Reset css -->
+    <link rel="stylesheet" href="/css/common.css" />
+
+    <link rel="stylesheet" href="/css/index.css" />
+
+    <link rel="shortcut icon" type="" href="/image/favicon.ico" />
+
+    <title>Our-To-Do</title>
+  </head>
+  <body>
+    <div class="wrapeer">
+      <div class="flex vertical">
+        <div class="main-title">
+          <p>Welcome Our-To-Do</p>
+          <p>이 페이지를 즐겨찾기나 NewTap으로 지정 후, 편리하게</p>
+          <p>'ToDoList', 'Bookmark', 'Weather information'을 이용해보세요!</p>
+        </div>
+
+        <button id="start-button">Start</button>
+      </div>
+    </div>
+
+    <script>
+      const button = document.getElementById("start-button");
+      button.addEventListener("click", (e) => {
+        location.href = "/main";
+      });
+    </script>
+  </body>
+</html>

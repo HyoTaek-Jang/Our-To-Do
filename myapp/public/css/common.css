@@ -8,12 +8,12 @@ body {
 
 @font-face {
   font-family: seoulHanB;
-  src: url(./font/서울한강\ 장체B.ttf) format("truetype");
+  src: url(/font/서울한강\ 장체B.ttf) format("truetype");
 }
 
 @font-face {
   font-family: seoulHanL;
-  src: url(./font/서울한강\ 장체L.ttf) format("truetype");
+  src: url(/font/서울한강\ 장체L.ttf) format("truetype");
 }
 
 /* Commoms */

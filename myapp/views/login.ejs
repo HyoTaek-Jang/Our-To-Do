@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/Reset.css" />
+    <!-- Reset css -->
+    <link rel="stylesheet" href="/css/common.css" />
+
+    <link rel="stylesheet" href="/css/login.css" />
+
+    <link rel="shortcut icon" type="" href="/image/favicon.ico" />
+
+    <script src="/javascripts/jquery.js" defer></script>
+    <script src="/javascripts/login.js" defer></script>
+
+    <title>Our-To-Do</title>
+  </head>
+  <body>
+    <div class="container">
+      <p class="main-title">
+        <a href="/">
+          <img src="/image/homeicon.png" width="90px" alt="" />
+          Our-To-DO</a
+        >
+      </p>
+      <div class="login-page">
+        <div class="form">
+          <form class="register-form">
+            <input type="text" placeholder="name" />
+            <input type="text" placeholder="id" />
+            <input type="password" placeholder="password" />
+            <input type="password" placeholder="confirm-password" />
+            <button>create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+          </form>
+          <form class="login-form">
+            <input type="text" placeholder="username" />
+            <input type="password" placeholder="password" />
+            <p class="auto-login flex">
+              Auto Login
+              <input type="checkbox" name="auto-login" id="auto-login-check" />
+            </p>
+            <button>login</button>
+            <p class="message">
+              Not registered? <a href="#">Create an account</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- Copyright (c) 2021 by Aigars Silkalns (https://codepen.io/colorlib/pen/rxddKy) -->

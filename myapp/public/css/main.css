@@ -8,7 +8,7 @@
   color: white;
   width: 40px;
   height: 40px;
-  background-image: url(./image/clear_w-07.png);
+  background-image: url(/image/clear_w-07.png);
   background-position: center;
   background-size: cover;
   text-indent: -9999px;
@@ -43,7 +43,7 @@
   display: block;
   width: 49px;
   height: 35px;
-  background-image: url(./image/longTitle.png);
+  background-image: url(/image/longTitle-05.png);
   background-position: left;
   background-size: cover;
   text-indent: -9999px;
@@ -118,7 +118,7 @@
   height: 30px;
   /* border: solid 2px white;
     border-radius: 16px; */
-  background-image: url(./image/delete_w.png);
+  background-image: url(/image/delete_w.png);
   background-position: center;
   background-size: cover;
   text-indent: -9999px;
@@ -169,7 +169,7 @@
   height: 30px;
   /* border: solid 2px white;
     border-radius: 16px; */
-  background-image: url(./image/cheak_w.png);
+  background-image: url(/image/cheak_w.png);
   background-position: center;
   background-size: cover;
   text-indent: -9999px;
@@ -204,31 +204,31 @@
 }
 
 .clouds {
-  background-image: url(./image/cloudy_w.png);
+  background-image: url(/image/cloudy_w.png);
 }
 
 .clear {
-  background-image: url(./image/sunny_w.png);
+  background-image: url(/image/sunny_w.png);
 }
 
 .thunder {
-  background-image: url(./image/rainy_w.png);
+  background-image: url(/image/rainy_w.png);
 }
 
 .drizzle {
-  background-image: url(./image/wet_w.png);
+  background-image: url(/image/wet_w.png);
 }
 
 .rain {
-  background-image: url(./image/rainy_w.png);
+  background-image: url(/image/rainy_w.png);
 }
 
 .snow {
-  background-image: url(./image/snowing_w.png);
+  background-image: url(/image/snowing_w.png);
 }
 
 .atmosphere {
-  background-image: url(./image/sunny_cloudy_w.png);
+  background-image: url(/image/sunny_cloudy_w.png);
 }
 
 .main-weather-day {
@@ -318,7 +318,7 @@
   height: 23px;
   /* border: solid 2px white;
     border-radius: 16px; */
-  background-image: url(./image/del2_w.png);
+  background-image: url(/image/del2_w.png);
   background-position: center;
   background-size: cover;
   text-indent: -9999px;
