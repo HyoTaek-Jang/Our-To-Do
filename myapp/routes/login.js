@@ -1,11 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const ctrl = require("./ctrl/home.js")
+const ctrl = require("./ctrl/home.js");
 
 /* GET home page. */
-router.get('/', ctrl.output.login);
-// router.post('/', ctrl.proccess.login);
-// router.post('/register', ctrl.proccess.login);
-
+router.get("/", ctrl.output.login);
+router.post("/", ctrl.process.login);
+// router.post("/register", ctrl.process.register);
 
 module.exports = router;

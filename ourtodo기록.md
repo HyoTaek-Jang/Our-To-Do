@@ -62,3 +62,28 @@
 - main 화면 수정 필요 - 이전엔 메인에서 사용자 이름 받음. 지금은 로그인해서 그 데이터를 넣어주는 형식
 - ERD 제작
 - https://advenoh.tistory.com/31 너무 좋은 글이다 진짜
+
+- 하... 또 떳다
+
+```
+0|www    |   code: 'ER_NOT_SUPPORTED_AUTH_MODE',
+0|www    |   errno: 1251,
+0|www    |   sqlMessage: 'Client does not support authentication protocol requested by server; consider upgrading MySQL client',
+0|www    |   sqlState: '08004',
+0|www    |   fatal: true
+0|www    | }
+```
+
+- 썩을 보안오류...
+- 다 안먹혀... 저번 방법도..
+- 아 시ㅣㅣㅣㅣㅣㅣㅣ빨 진짜 이건 아니지
+- 왜 환경변수가 안먹혀서 이렇게 된거였다고?
+- 이건 아니지 진짜
+- 아ㅏㅏㅏㅏㅏㅏㅏㅏ사람 죽이네 아오
+- 왜 환경변수가 안먹었지
+- ㅋ 항상 그렇듯 내가 잘못한거.
+- app.js에서 dotenv를 안켜줌 와 근데 환경변수 안키 오류가 너무 내가 익숙한 오류였어.......
+
+- 배운점 : 폼태그 안에 버튼이 눌리면 서밋마냥 폼 실행시킴
+- ajax에서 에러 발생시키기. res를 보낼때 status를 500으로 보냄
+- 트라이 캐치에서 reject는 캐치로 잡힌다!
