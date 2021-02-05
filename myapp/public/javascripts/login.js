@@ -10,7 +10,7 @@ $("#login-button").click(() => {
     data: {
       id: $("#login-id").val(),
       password: $("#login-password").val(),
-      "auto-login": $("#auto-login").val(),
+      "auto-login": $("#auto-login").is(":checked"),
     },
     success: (result) => {
       console.log(result);
@@ -18,6 +18,27 @@ $("#login-button").click(() => {
     },
     error: (err) => {
       alert("로그인 통신 오류");
+    },
+  });
+});
+
+$("#register-button").click(() => {
+  $.ajax({
+    url: "/register",
+    type: "POST",
+    dataType: "json",
+    data: {
+      name: $("#register-name").val(),
+      id: $("#register-id").val(),
+      password: $("#register-password").val(),
+      "confirm-password": $("#register-confirm-password").val(),
+    },
+    success: (result) => {
+      console.log(result);
+      alert(result.msg);
+    },
+    error: (err) => {
+      alert("회원가입 통신 오류");
     },
   });
 });

@@ -15,8 +15,24 @@ module.exports = {
   process: {
     login: async (req, res) => {
       const user = new User(req.body);
-      const data = await user.login();
-      res.json(data);
+      // 로그인 결과 받기
+      const loginResult = await user.login();
+
+      if (loginResult.result == true) {
+        //로그인 성공
+        res.json(loginResult);
+      } else {
+        // 실패
+        res.json(loginResult);
+      }
+    },
+    register: async (req, res) => {
+      const user = new User(req.body);
+      const registerResult = await user.register();
+      res.json(registerResult);
+    },
+    todo: (req, res) => {
+      res.json(req.body);
     },
   },
 };
