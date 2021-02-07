@@ -1,4 +1,5 @@
 const UserStorage = require("./UserStorage");
+const crypto = require("crypto");
 
 class User {
   constructor(data) {
@@ -10,7 +11,11 @@ class User {
       const userInfo = await UserStorage.getInfo(this.body.id);
       // 아이디 비번 비교처리
 
-      if (this.body.password != userInfo.user_password) {
+      const hashPsw = await UserStorage.hashPsw(
+        this.body.password,
+        userInfo.user_salt
+      );
+      if (hashPsw.hashPsw != userInfo.user_password) {
         return { result: false, msg: "비밀번호가 다름" };
       }
 
@@ -39,9 +44,13 @@ class User {
       if (data.password != data["confirm-password"])
         return { result: false, msg: "비밀번호가 다름" };
 
-      const adsaf = await UserStorage.setInfo(data);
+      const hashPsw = await UserStorage.hashPsw(data.password);
+      data["hashPsw"] = hashPsw.hashPsw;
+      data["salt"] = hashPsw.salt;
+
+      const setInfo = await UserStorage.setInfo(data);
       // 삽입 성공시 반환
-      if (adsaf) return { result: true, msg: data.id };
+      if (setInfo) return { result: true, msg: data.id };
     }
   }
 }

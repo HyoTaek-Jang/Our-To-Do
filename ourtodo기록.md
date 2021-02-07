@@ -92,3 +92,34 @@
 
 - register 에러 고침
 - 내가 UserStorage에서 reject로 띄운다는 에러가 안띄워짐 그냥 아이디가 없어도 undefined로 나옴 그래서 if(err)을 if(data[0]==unde~)로 바꿔서 해결
+
+## 21년 2월 7일
+
+- 비밀번호를 해시와 솔트를 활용해서 보안을 높임
+- 해시는 단방향 암호화고
+- 레인보우 테이블로 찾을 수 가 있기에 솔트를 통해 다시 암호화를 한다. 이 작업을 반복하여 비밀번호를 암호화를 하고 사용자가 비밀번호를 입력하면 똑같은 과정을 거쳐서 해시 값으로 비교 후, 로그인 처리를 한다.
+
+```js
+  hashPsw(psw) {
+    return new Promise((resolve, reject) => {
+      const hashPsw = crypto.randomBytes(64, (err, buf) => {
+        crypto.pbkdf2(
+          this.body.password,
+          buf.toString("base64"),
+          12367,
+          64,
+          "sha512",
+          (err, key) => {
+            resolve({
+              sort: buf.toString("base64"),
+              hashPsw: key.toString("base64"),
+            });
+          }
+        );
+      });
+    });
+  }
+```
+
+- pbkdf2 메소드 => 단방향 암호화 메소드. 인자는 순서대로 비번, salt, 반복 횟수, 비번 길이, 해시 아록리즘 순서.
+- 솔트를 랜덤값으로 지정, 그렇기에 디비에 솔트도 같이 넣어야함.
