@@ -4,7 +4,7 @@ $(".message a").click(function () {
 
 $("#login-button").click(() => {
   $.ajax({
-    url: "/login",
+    url: "/user/login",
     type: "POST",
     dataType: "json",
     data: {
@@ -13,8 +13,12 @@ $("#login-button").click(() => {
       "auto-login": $("#auto-login").is(":checked"),
     },
     success: (result) => {
-      console.log(result);
-      alert(result.msg);
+      if (result.result) {
+        alert(result.msg);
+        location.href = "/main";
+      } else {
+        alert(result.msg);
+      }
     },
     error: (err) => {
       alert("로그인 통신 오류");
@@ -24,7 +28,7 @@ $("#login-button").click(() => {
 
 $("#register-button").click(() => {
   $.ajax({
-    url: "/register",
+    url: "/user/register",
     type: "POST",
     dataType: "json",
     data: {

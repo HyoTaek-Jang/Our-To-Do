@@ -5,26 +5,40 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const dotenv = require("dotenv");
 dotenv.config();
-
+const session = require("express-session");
+const sessionStore = require("./config/dbStore");
 const indexRouter = require("./routes/index");
-const loginRouter = require("./routes/login");
+const userRouter = require("./routes/user");
 const mainRouter = require("./routes/main");
 const registerRouter = require("./routes/register");
 
 var app = express();
 
+app.use(logger("dev"));
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+    },
+  })
+);
 
 app.use("/", indexRouter);
-app.use("/login", loginRouter);
+app.use("/user", userRouter);
 app.use("/main", mainRouter);
 app.use("/register", registerRouter);
 

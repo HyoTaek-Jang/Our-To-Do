@@ -1,5 +1,4 @@
 const UserStorage = require("./UserStorage");
-const crypto = require("crypto");
 
 class User {
   constructor(data) {
@@ -8,11 +7,11 @@ class User {
 
   async login() {
     try {
-      const userInfo = await UserStorage.getInfo(this.body.id);
+      const userInfo = await UserStorage.getInfo(this.body.body.id);
       // 아이디 비번 비교처리
 
       const hashPsw = await UserStorage.hashPsw(
-        this.body.password,
+        this.body.body.password,
         userInfo.user_salt
       );
       if (hashPsw.hashPsw != userInfo.user_password) {
@@ -20,16 +19,33 @@ class User {
       }
 
       // 'auto-login' == 'on' 이면 자동로그인되게
-      if (this.body["auto-login"] == "true") {
+      if (this.body.body["auto-login"] == "true") {
         console.log("auto login");
       }
 
+      this.body.session.authenticate = true;
+      this.body.session.userName = userInfo.user_name;
+      this.body.session.userId = userInfo.user_id;
+      this.body.session.maxAge = 60;
+
       // 정상처리 객체
-      return { result: true, msg: userInfo.user_name };
+      return {
+        result: true,
+        msg: userInfo.user_name,
+      };
     } catch (error) {
       console.log(error);
       return { result: false, msg: "아이디가 존재하지 않음" };
     }
+  }
+
+  logout() {
+    return new Promise((resolve, reject) => {
+      this.body.session.destroy(() => {
+        this.body.session;
+      });
+      resolve("good");
+    });
   }
 
   async register() {

@@ -12,11 +12,13 @@
 
     <link rel="shortcut icon" type="" href="/image/favicon.ico" />
 
+    <script src="/javascripts/jquery.js" defer></script>
     <script src="/javascripts/clock.js" defer></script>
     <script src="/javascripts/greeting.js" defer></script>
     <script src="/javascripts/todo.js" defer></script>
     <script src="/javascripts/bookmark.js" defer></script>
-    <script src="/javascriptsweather.js" defer></script>
+    <script src="/javascripts/weather.js" defer></script>
+    <script src="/javascripts/logout.js" defer></script>
 
     <title>Our-To-Do</title>
   </head>
@@ -26,7 +28,7 @@
         <a class="tool-bar-home" href="/">home</a>
         <div class="tool-bar">
           <p class="clearAll">Reset</p>
-          <p>Logout</p>
+          <p id="logout">Logout</p>
         </div>
       </div>
       <div class="container flex container-flex-media">
@@ -77,7 +79,7 @@
 
             <div class="main-clock">11:00</div>
 
-            <div class="main-welcome">welcome john!</div>
+            <div class="main-welcome show">Enjoy your day, <%= username %></div>
 
             <div class="main-enterName">
               <p>What's your name?</p>

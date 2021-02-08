@@ -8,12 +8,12 @@ body {
 
 @font-face {
   font-family: seoulHanB;
-  src: url(/font/서울한강\ 장체B.ttf) format("truetype");
+  src: url(/font/fontB.ttf) format("truetype");
 }
 
 @font-face {
   font-family: seoulHanL;
-  src: url(/font/서울한강\ 장체L.ttf) format("truetype");
+  src: url(/font/fontL.ttf) format("truetype");
 }
 
 /* Commoms */
@@ -67,9 +67,6 @@ body {
   border-bottom: white 2px solid;
   margin: 0 auto;
   padding-top: 15px;
-}
-
-a {
 }
 
 /* Layouts */

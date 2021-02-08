@@ -123,3 +123,40 @@
 
 - pbkdf2 메소드 => 단방향 암호화 메소드. 인자는 순서대로 비번, salt, 반복 횟수, 비번 길이, 해시 아록리즘 순서.
 - 솔트를 랜덤값으로 지정, 그렇기에 디비에 솔트도 같이 넣어야함.
+
+## 21년 2월 8일
+
+- 세션을 활용하여 로그인, 로그아웃 기능 구현함
+
+```javascript
+const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
+
+const dbStore = new MySQLStore({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PSWORD,
+  database: process.env.DB_DATABASE,
+  port: 3306,
+});
+
+module.exports = dbStore;
+```
+
+- 저 port를 그냥 환경변수 포트로 둬서 3000번이 들어갔다... 그래서 계속 에러가 뜬거였어!!!!!!!!!!!!ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+- 역시나 항상 그렇듯 내가 잘못한거지..
+
+- 앞으로 세션을 활용하여 더 구현할것.
+
+  - 자동로그인
+  - 자동로그인 안하면 브라우저 종료시 로그아웃
+  - 혹은 2시간 지나면 로그아웃..
+
+- 로그아웃 기능 구현 완료
+- destroy를 활용
+
+```javascript
+this.body.session.destroy(() => {
+  this.body.session;
+});
+```
