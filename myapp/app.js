@@ -10,7 +10,6 @@ const sessionStore = require("./config/dbStore");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const mainRouter = require("./routes/main");
-const registerRouter = require("./routes/register");
 
 var app = express();
 
@@ -40,7 +39,6 @@ app.use(
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 app.use("/main", mainRouter);
-app.use("/register", registerRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

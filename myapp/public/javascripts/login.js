@@ -14,7 +14,7 @@ $("#login-button").click(() => {
     },
     success: (result) => {
       if (result.result) {
-        alert(result.msg);
+        alert(result.msg + "님 로그인 돼쓰여");
         location.href = "/main";
       } else {
         alert(result.msg);
@@ -39,7 +39,7 @@ $("#register-button").click(() => {
     },
     success: (result) => {
       console.log(result);
-      alert(result.msg);
+      alert(result.msg + "님 회원가입 ㅊㅋ");
     },
     error: (err) => {
       alert("회원가입 통신 오류");

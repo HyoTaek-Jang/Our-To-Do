@@ -26,7 +26,7 @@ class User {
       this.body.session.authenticate = true;
       this.body.session.userName = userInfo.user_name;
       this.body.session.userId = userInfo.user_id;
-      this.body.session.maxAge = 60;
+      // this.body.session.cookie.maxAge = 30;
 
       // 정상처리 객체
       return {
