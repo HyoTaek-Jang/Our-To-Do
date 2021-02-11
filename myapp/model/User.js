@@ -23,7 +23,10 @@ class User {
       // 'auto-login' == 'on' 이면 자동로그인되게
       if (this.body.body["auto-login"] == "true") {
         // 로그인 쿠키 발행
-        const cookieData = await LoginCookie.setCookie(this.body, this.res);
+        const cookieData = await LoginCookie.setCookie(
+          this.body.body.id,
+          this.res
+        );
         await LoginCookie.saveToDB(cookieData);
       }
 
@@ -48,6 +51,7 @@ class User {
       this.body.session.destroy(() => {
         this.body.session;
       });
+      this.res.clearCookie("login_cookie");
       resolve("good");
     });
   }

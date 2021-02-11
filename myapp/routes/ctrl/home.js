@@ -7,20 +7,33 @@ module.exports = {
       if (req.session.authenticate) res.redirect("/main");
       else if (req.cookies.login_cookie) {
         // 로그인쿠키 있나 확인하고 있으면 db체크후 사용자면 로그인 처리
-        const checkCookie = await LoginCookie.checkCookie(
-          req.cookies.login_cookie
-        );
-        if (checkCookie.result) {
-          // 세션받기 그리고 res
-          console.log("good");
-        } else {
-          // db 삭제 그리고 res 홈
-        }
 
-        res.render("index");
+        try {
+          const checkCookie = await LoginCookie.checkCookie(
+            req.cookies.login_cookie
+          );
+          await LoginCookie.deleteToDB(checkCookie.cookie_user_id);
+          if (checkCookie.result) {
+            // 세션받기 그리고 db삭제하고 다시 넣기, 쿠키도 다시
+            const cookieData = await LoginCookie.setCookie(
+              checkCookie.cookie_user_id,
+              res
+            );
+            await LoginCookie.saveToDB(cookieData);
+
+            await LoginCookie.getSession(req, checkCookie.cookie_user_id);
+            res.redirect("/main");
+          } else {
+            // db 삭제 그리고 res 홈
+            res.render("index");
+          }
+        } catch (error) {
+          res.render("index");
+        }
       } else res.render("index");
     },
     main: (req, res) => {
+      console.log(req.session);
       if (!req.session.authenticate) res.redirect("/");
       else res.render("main", { username: req.session.userName });
     },
@@ -45,7 +58,7 @@ module.exports = {
     },
     logout: async (req, res) => {
       // 디비 login_cookie삭제
-      const user = new User(req);
+      const user = new User(req, res);
       await user.logout();
 
       res.json({ result: true });

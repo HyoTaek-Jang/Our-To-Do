@@ -2,14 +2,14 @@ const db = require("../config/db");
 const crypto = require("crypto");
 
 class LoginCookie {
-  static setCookie(req, res) {
+  static setCookie(user_id, res) {
     return new Promise((resolve, reject) => {
       db.query(
         "SELECT user_salt FROM user WHERE user_id = ?",
-        [req.body.id],
+        [user_id],
         (err, data) => {
           crypto.pbkdf2(
-            req.body.id,
+            user_id,
             Math.random().toString(36).substr(2, 11),
             12841,
             64,
@@ -17,7 +17,7 @@ class LoginCookie {
             (err, key) => {
               const dataSet = {
                 cookie_identify: data[0].user_salt,
-                cookie_user_id: req.body.id,
+                cookie_user_id: user_id,
                 cookie_token: key.toString("base64"),
               };
               res.cookie(
@@ -57,20 +57,54 @@ class LoginCookie {
         "SELECT cookie_identify, cookie_user_id, cookie_token FROM login_cookie WHERE cookie_user_id = ?",
         [cookieData.cookie_user_id],
         (err, data) => {
-          if (data) {
+          console.log(data);
+          if (data.length) {
             if (
               data[0].cookie_identify == cookieData.cookie_identify &&
               data[0].cookie_token == cookieData.cookie_token
             )
               resolve({ result: true, cookie_user_id: data[0].cookie_user_id });
+            else
+              resolve({
+                result: false,
+                cookie_user_id: data[0].cookie_user_id,
+              });
           }
-          resolve({ result: false });
+          reject();
         }
       );
     });
   }
 
-  static getSession() {}
+  static getSession(req, user_id) {
+    return new Promise((resolve) => {
+      db.query(
+        "SELECT * FROM user WHERE user_id = ?",
+        [user_id],
+        (err, data) => {
+          req.session.authenticate = true;
+          req.session.userName = data[0].user_name;
+          req.session.userId = data[0].user_id;
+
+          resolve("good");
+        }
+      );
+    });
+  }
+
+  static deleteToDB(user_id) {
+    return new Promise((resolve) => {
+      db.query(
+        "DELETE FROM login_cookie WHERE cookie_user_id = ?",
+        [user_id],
+        (err) => {
+          if (err) console.err(err);
+
+          resolve("good");
+        }
+      );
+    });
+  }
 }
 
 module.exports = LoginCookie;
