@@ -25,7 +25,6 @@ class User {
         // 로그인 쿠키 발행
         const cookieData = await LoginCookie.setCookie(this.body, this.res);
         await LoginCookie.saveToDB(cookieData);
-        console.log(cookieData);
       }
 
       this.body.session.authenticate = true;

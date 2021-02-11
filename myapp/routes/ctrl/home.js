@@ -1,12 +1,22 @@
 const User = require("../../model/User");
+const LoginCookie = require("../../model/LoginCookie");
 
 module.exports = {
   output: {
-    index: (req, res) => {
+    index: async (req, res) => {
       if (req.session.authenticate) res.redirect("/main");
       else if (req.cookies.login_cookie) {
         // 로그인쿠키 있나 확인하고 있으면 db체크후 사용자면 로그인 처리
-        console.log(req.cookies.login_cookie);
+        const checkCookie = await LoginCookie.checkCookie(
+          req.cookies.login_cookie
+        );
+        if (checkCookie.result) {
+          // 세션받기 그리고 res
+          console.log("good");
+        } else {
+          // db 삭제 그리고 res 홈
+        }
+
         res.render("index");
       } else res.render("index");
     },

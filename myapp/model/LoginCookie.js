@@ -15,23 +15,21 @@ class LoginCookie {
             64,
             "sha512",
             (err, key) => {
+              const dataSet = {
+                cookie_identify: data[0].user_salt,
+                cookie_user_id: req.body.id,
+                cookie_token: key.toString("base64"),
+              };
               res.cookie(
                 "login_cookie",
-                `{
-                    cookie_identify: ${data[0].user_salt},
-                    cookie_user_id: ${req.body.id},
-                    cookie_token: ${key.toString("base64")},
-                  }`,
+                // prettier-ignore
+                JSON.stringify(dataSet),
                 {
                   httpOnly: true,
                   maxAge: 30 * 24 * 60 * 60 * 1000,
                 }
               );
-              resolve({
-                cookie_identify: data[0].user_salt,
-                cookie_user_id: req.body.id,
-                cookie_token: key.toString("base64"),
-              });
+              resolve(dataSet);
             }
           );
         }
@@ -51,6 +49,28 @@ class LoginCookie {
       );
     });
   }
+
+  static checkCookie(body) {
+    return new Promise((resolve, reject) => {
+      const cookieData = JSON.parse(body);
+      db.query(
+        "SELECT cookie_identify, cookie_user_id, cookie_token FROM login_cookie WHERE cookie_user_id = ?",
+        [cookieData.cookie_user_id],
+        (err, data) => {
+          if (data) {
+            if (
+              data[0].cookie_identify == cookieData.cookie_identify &&
+              data[0].cookie_token == cookieData.cookie_token
+            )
+              resolve({ result: true, cookie_user_id: data[0].cookie_user_id });
+          }
+          resolve({ result: false });
+        }
+      );
+    });
+  }
+
+  static getSession() {}
 }
 
 module.exports = LoginCookie;
