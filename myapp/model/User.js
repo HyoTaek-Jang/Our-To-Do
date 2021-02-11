@@ -1,8 +1,10 @@
 const UserStorage = require("./UserStorage");
+const LoginCookie = require("./LoginCookie");
 
 class User {
-  constructor(data) {
+  constructor(data, res = null) {
     this.body = data;
+    this.res = res;
   }
 
   async login() {
@@ -20,13 +22,15 @@ class User {
 
       // 'auto-login' == 'on' 이면 자동로그인되게
       if (this.body.body["auto-login"] == "true") {
-        console.log("auto login");
+        // 로그인 쿠키 발행
+        const cookieData = await LoginCookie.setCookie(this.body, this.res);
+        await LoginCookie.saveToDB(cookieData);
+        console.log(cookieData);
       }
 
       this.body.session.authenticate = true;
       this.body.session.userName = userInfo.user_name;
       this.body.session.userId = userInfo.user_id;
-      // this.body.session.cookie.maxAge = 30;
 
       // 정상처리 객체
       return {
@@ -41,6 +45,7 @@ class User {
 
   logout() {
     return new Promise((resolve, reject) => {
+      // 세션도 없애고 로그인 쿠키도 없애야함.
       this.body.session.destroy(() => {
         this.body.session;
       });
@@ -53,6 +58,7 @@ class User {
     // 비번 같나 체크
     // 통과하면 디비에 셋
     const data = this.body;
+    console.log(data);
     try {
       const info = await UserStorage.getInfo(data.id);
       return { result: false, msg: "아이디가 이미 존재함" };

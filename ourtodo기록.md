@@ -171,3 +171,29 @@ this.body.session.destroy(() => {
 - mysql 문제가 계속 발생해서 dotenv를 제대로 못받나했는데
 - 내가 dotenv를 깃에 안올리고 커밋해서 우분투에는 dotenv가 없었음!!
 - 해결!
+
+### 1차 테스트 배포
+
+- 요구사항 : 투두 수정이 가능하게
+
+## 21년 2월 11일
+
+- passport 모듈 적용 시도.
+
+1. app.js에 passport와 passportConfi = require("./passport") 선언
+
+   - 위처럼 ./~하면 ./passport/index.js를 호출함.
+
+2. 세션 선언 다음에 passport.initialize()와 session()선언
+
+- initialize()는 요청(req)에 passport 설정을 심고, session은 req.session에 passport 정보를 저장함.
+
+3. passport는 req객체에 isAuthenticated 메서드를 추가함. 로그인 중이면 저 메소드는 트루를 반환, 아니면 펄스를 반환.
+
+- 이미 로그인 구현 다 했기에 passport는 패스 하고 자동로그인 구현을!
+- 세션은 현재 브라우저가 꺼지면 로그아웃이 됨.
+- 자동 로그인 구현을 위해 https://isme2n.github.io/devlog/2017/06/13/security-remember-me/ 참고
+- db 재구성 완료.
+- 쿠키를 추가하는 과정에서 어떻게 json을 넣지 고민했는데. 쿠키는 문자열만 들어갈 수 있다고 한다!
+- secure쓰면 https에서만 쿠키가 돌아감.
+- maxAge로 1달짜리 쿠키 만들고 재접하면 새롭게 쿠키 갱신하는거로 1달동안 접속안하면 빠잉!

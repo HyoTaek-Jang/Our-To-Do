@@ -27,22 +27,30 @@ $("#login-button").click(() => {
 });
 
 $("#register-button").click(() => {
-  $.ajax({
-    url: "/user/register",
-    type: "POST",
-    dataType: "json",
-    data: {
-      name: $("#register-name").val(),
-      id: $("#register-id").val(),
-      password: $("#register-password").val(),
-      "confirm-password": $("#register-confirm-password").val(),
-    },
-    success: (result) => {
-      console.log(result);
-      alert(result.msg + "님 회원가입 ㅊㅋ");
-    },
-    error: (err) => {
-      alert("회원가입 통신 오류");
-    },
-  });
+  if (
+    $("#register-name").val() &&
+    $("#register-id").val() &&
+    $("#register-password").val() &&
+    $("#register-confirm-password").val()
+  ) {
+    $.ajax({
+      url: "/user/register",
+      type: "POST",
+      dataType: "json",
+      data: {
+        name: $("#register-name").val(),
+        id: $("#register-id").val(),
+        password: $("#register-password").val(),
+        "confirm-password": $("#register-confirm-password").val(),
+      },
+      success: (result) => {
+        console.log(result);
+        if (result.result == true) alert(result.msg + "님 회원가입 ㅊㅋ");
+        else alert("회원가입 실패!! " + result.msg);
+      },
+      error: (err) => {
+        alert("회원가입 통신 오류");
+      },
+    });
+  } else alert("빈칸이 있으면 안되지여~");
 });

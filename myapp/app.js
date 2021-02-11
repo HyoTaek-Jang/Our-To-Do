@@ -1,11 +1,12 @@
-var createError = require("http-errors");
 var express = require("express");
+var createError = require("http-errors");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const dotenv = require("dotenv");
-dotenv.config();
 const session = require("express-session");
+const dotenv = require("dotenv");
+
+dotenv.config();
 const sessionStore = require("./config/dbStore");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
