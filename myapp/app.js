@@ -11,6 +11,7 @@ const sessionStore = require("./config/dbStore");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const mainRouter = require("./routes/main");
+const cookieRouter = require("./routes/cookie");
 
 var app = express();
 
@@ -33,10 +34,12 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: false,
+      maxAge: 2 * 60 * 60 * 1000,
     },
   })
 );
 
+app.use("/", cookieRouter);
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 app.use("/main", mainRouter);
