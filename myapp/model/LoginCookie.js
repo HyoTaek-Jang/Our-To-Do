@@ -42,21 +42,19 @@ class LoginCookie {
         "INSERT INTO login_cookie (cookie_identify, cookie_user_id, cookie_token) VALUES(?,?,?)",
         [data.cookie_identify, data.cookie_user_id, data.cookie_token],
         (err) => {
-          if (err) console.err(err);
+          if (err) console.error(err);
           resolve("good");
         }
       );
     });
   }
 
-  static checkCookie(body) {
+  static checkCookie(cookieData) {
     return new Promise((resolve, reject) => {
-      const cookieData = JSON.parse(body);
       db.query(
         "SELECT cookie_identify, cookie_user_id, cookie_token FROM login_cookie WHERE cookie_user_id = ?",
         [cookieData.cookie_user_id],
         (err, data) => {
-          console.log(data);
           if (data.length) {
             if (
               data[0].cookie_identify == cookieData.cookie_identify &&
@@ -69,7 +67,7 @@ class LoginCookie {
                 cookie_user_id: data[0].cookie_user_id,
               });
           }
-          reject();
+          reject("checkCookie");
         }
       );
     });
@@ -97,7 +95,7 @@ class LoginCookie {
         "DELETE FROM login_cookie WHERE cookie_user_id = ?",
         [user_id],
         (err) => {
-          if (err) console.err(err);
+          if (err) console.error(err);
 
           resolve("good");
         }

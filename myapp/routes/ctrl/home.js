@@ -1,38 +1,12 @@
 const User = require("../../model/User");
 const LoginCookie = require("../../model/LoginCookie");
 const Todo = require("../../model/Todo");
-const AutoLogin = require("../../model/AutoLogin");
 
 module.exports = {
   output: {
     index: async (req, res) => {
       if (req.session.authenticate) res.redirect("/main");
-      else if (req.cookies.login_cookie) {
-        // 로그인쿠키 있나 확인하고 있으면 db체크후 사용자면 로그인 처리
-
-        try {
-          const checkCookie = await LoginCookie.checkCookie(
-            req.cookies.login_cookie
-          );
-          await LoginCookie.deleteToDB(checkCookie.cookie_user_id);
-          if (checkCookie.result) {
-            // 세션받기 그리고 db삭제하고 다시 넣기, 쿠키도 다시
-            const cookieData = await LoginCookie.setCookie(
-              checkCookie.cookie_user_id,
-              res
-            );
-            await LoginCookie.saveToDB(cookieData);
-
-            await LoginCookie.getSession(req, checkCookie.cookie_user_id);
-            res.redirect("/main");
-          } else {
-            // db 삭제 그리고 res 홈
-            res.render("index");
-          }
-        } catch (error) {
-          res.render("index");
-        }
-      } else res.render("index");
+      else res.render("index");
     },
     main: (req, res) => {
       if (!req.session.authenticate) res.redirect("/");

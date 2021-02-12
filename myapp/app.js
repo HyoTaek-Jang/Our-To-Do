@@ -11,7 +11,8 @@ const sessionStore = require("./config/dbStore");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const mainRouter = require("./routes/main");
-const cookieRouter = require("./routes/cookie");
+const cookieMiddle = require("./middleware/cookieMiddle");
+const autoLoginMiddle = require("./middleware/autoLogin");
 
 var app = express();
 
@@ -39,7 +40,8 @@ app.use(
   })
 );
 
-app.use("/", cookieRouter);
+app.use("*", cookieMiddle);
+app.use("*", autoLoginMiddle);
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 app.use("/main", mainRouter);
