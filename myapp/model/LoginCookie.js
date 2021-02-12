@@ -2,6 +2,10 @@ const db = require("../config/db");
 const crypto = require("crypto");
 
 class LoginCookie {
+  constructor(loginCookie) {
+    this.cookie = loginCookie;
+  }
+
   static setCookie(user_id, res) {
     return new Promise((resolve, reject) => {
       db.query(
@@ -20,15 +24,10 @@ class LoginCookie {
                 cookie_user_id: user_id,
                 cookie_token: key.toString("base64"),
               };
-              res.cookie(
-                "login_cookie",
-                // prettier-ignore
-                JSON.stringify(dataSet),
-                {
-                  httpOnly: true,
-                  maxAge: 30 * 24 * 60 * 60 * 1000,
-                }
-              );
+              res.cookie("login_cookie", JSON.stringify(dataSet), {
+                httpOnly: true,
+                maxAge: 30 * 24 * 60 * 60 * 1000,
+              });
               resolve(dataSet);
             }
           );

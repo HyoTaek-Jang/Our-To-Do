@@ -1,10 +1,23 @@
+const db = require("../config/db");
+
 class Todo {
   constructor(data) {
-    this.data = data;
+    this.id = data;
+    console.log(this.id);
   }
 
-  setTodo() {
-    // 아이디 확인해서 디비 존재하면
-    // 투두 디비에 셋 요청 보내기
+  setTodo(content) {
+    return new Promise((resolve) => {
+      db.query(
+        "INSERT INTO todo (todo_content, user_user_id) VALUES(?,?)",
+        [content, this.id],
+        (err) => {
+          if (err) console.err(err);
+          resolve();
+        }
+      );
+    });
   }
 }
+
+module.exports = Todo;

@@ -1,5 +1,7 @@
 const User = require("../../model/User");
 const LoginCookie = require("../../model/LoginCookie");
+const Todo = require("../../model/Todo");
+const AutoLogin = require("../../model/AutoLogin");
 
 module.exports = {
   output: {
@@ -33,7 +35,6 @@ module.exports = {
       } else res.render("index");
     },
     main: (req, res) => {
-      console.log(req.session);
       if (!req.session.authenticate) res.redirect("/");
       else res.render("main", { username: req.session.userName });
     },
@@ -68,7 +69,9 @@ module.exports = {
       const registerResult = await user.register();
       res.json(registerResult);
     },
-    todo: (req, res) => {
+    addTodo: async (req, res) => {
+      const todo = new Todo(req.session.userId);
+      await todo.setTodo(req.body["todo-input"]);
       res.json(req.body);
     },
   },

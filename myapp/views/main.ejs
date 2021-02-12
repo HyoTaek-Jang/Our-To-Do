@@ -15,10 +15,11 @@
     <script src="/javascripts/jquery.js" defer></script>
     <script src="/javascripts/clock.js" defer></script>
     <script src="/javascripts/greeting.js" defer></script>
-    <script src="/javascripts/todo.js" defer></script>
+    <!-- <script src="/javascripts/todo.js" defer></script> -->
     <script src="/javascripts/bookmark.js" defer></script>
     <script src="/javascripts/weather.js" defer></script>
     <script src="/javascripts/logout.js" defer></script>
+    <script src="/javascripts/DB_todo.js" defer></script>
 
     <title>Our-To-Do</title>
   </head>
@@ -46,9 +47,9 @@
             <span class="lineLong"> </span>
 
             <div class="toDo-input flex">
-              <form class="todoForm" action="">
+              <form class="todoForm" action="/main/todo" method="POST">
                 <div class="toDo-input-value">
-                  <input type="text" placeholder="Write Here" />
+                  <input id="todo-input" type="text" placeholder="Write Here" />
                 </div>
               </form>
             </div>
