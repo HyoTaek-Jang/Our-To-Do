@@ -196,39 +196,43 @@
 }
 
 .main-weather-icon {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   background-position: center;
   background-size: cover;
   text-indent: -9999px;
 }
 
-.clouds {
-  background-image: url(/image/cloudy_w.png);
+.W01d,
+.W01n {
+  background-image: url(/image/weather/W01d.png);
 }
-
-.clear {
-  background-image: url(/image/sunny_w.png);
+.W02d,
+.W02n {
+  background-image: url(/image/weather/W02d.png);
 }
-
-.thunder {
-  background-image: url(/image/rainy_w.png);
+.W03d,
+.W03n {
+  background-image: url(/image/weather/W03d.png);
 }
-
-.drizzle {
-  background-image: url(/image/wet_w.png);
+.W04d,
+.W04n {
+  background-image: url(/image/weather/W04d.png);
 }
-
-.rain {
-  background-image: url(/image/rainy_w.png);
+.W09d {
+  background-image: url(/image/weather/W09d.png);
 }
-
-.snow {
-  background-image: url(/image/snowing_w.png);
+.W10d {
+  background-image: url(/image/weather/W10d.png);
 }
-
-.atmosphere {
-  background-image: url(/image/sunny_cloudy_w.png);
+.W11d {
+  background-image: url(/image/weather/W11d.png);
+}
+.W13d {
+  background-image: url(/image/weather/W13d.png);
+}
+.W50d {
+  background-image: url(/image/weather/W50d.png);
 }
 
 .main-weather-day {
