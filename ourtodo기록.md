@@ -348,3 +348,18 @@ sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-po
 - 뭔 이상한 오류 왜 뜨는지... sql 오류 위에 적은거
 - 리드미에 사용법
 - api 명세서
+
+## 왘!!!!!!!!!!HTTPS까지 했다!!!!!!
+
+- https는 443이 기본 포트고 뚫어줌.
+- https://velog.io/@neity16/EC2-https%EC%84%A4%EC%A0%95Nodejsletsencrypt
+- 설명 너무 잘돼있음
+- 서버 키고 인증서 발급 받아야함.
+- 도메인은 걍 ourtodo.site 이거!
+
+- 찐찐찐 마지막
+  1. 디자인?
+  2. 인증서 재발급 - 위에 블로그에 다 적혀있음
+  3. http 접속시 https로 돌리기 - httpsRedirect 미들웨어로 해결
+
+# 끝.

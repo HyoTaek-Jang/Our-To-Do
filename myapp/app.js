@@ -14,6 +14,7 @@ const userRouter = require("./routes/user");
 const mainRouter = require("./routes/main");
 const cookieMiddle = require("./middleware/cookieMiddle");
 const autoLoginMiddle = require("./middleware/autoLogin");
+// const httpsRedirectMiddle = require("./middleware/httpsRedirect");
 
 var app = express();
 
@@ -41,6 +42,8 @@ app.use(
     },
   })
 );
+
+// app.use(httpsRedirectMiddle);
 app.use(cookieMiddle);
 app.use(autoLoginMiddle);
 
