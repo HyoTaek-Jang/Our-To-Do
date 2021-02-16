@@ -9,9 +9,10 @@ class User {
 
   async login() {
     try {
+      // 해당하는 id가 존재하는지 체크
       const userInfo = await UserStorage.getInfo(this.body.body.id);
-      // 아이디 비번 비교처리
 
+      // 사용자 salt를 통해 똑같이 암호화를 하여 해쉬 값 비교를 한다. 이를 가지고 패스워드 체크
       const hashPsw = await UserStorage.hashPsw(
         this.body.body.password,
         userInfo.user_salt
@@ -20,9 +21,8 @@ class User {
         return { result: false, msg: "비밀번호가 다릅니다." };
       }
 
-      // 'auto-login' == 'on' 이면 자동로그인되게
+      // 'auto-login' == 'on' 이면 로그인 쿠키 발행
       if (this.body.body["auto-login"] == "true") {
-        // 로그인 쿠키 발행
         const cookieData = await LoginCookie.setCookie(
           this.body.body.id,
           this.res
@@ -30,11 +30,11 @@ class User {
         await LoginCookie.saveToDB(cookieData);
       }
 
+      // 로그인 세션 발행
       this.body.session.authenticate = true;
       this.body.session.userName = userInfo.user_name;
       this.body.session.userId = userInfo.user_id;
 
-      // 정상처리 객체
       return {
         result: true,
         msg: userInfo.user_name,
@@ -47,7 +47,7 @@ class User {
 
   logout() {
     return new Promise((resolve, reject) => {
-      // 세션도 없애고 로그인 쿠키도 없애야함.
+      // 세션과 로그인 쿠키 삭제
       this.body.session.destroy(() => {
         this.body.session;
       });
@@ -57,11 +57,13 @@ class User {
   }
 
   async register() {
-    // 일단 아이디가 존재하는지 체크
-    // 비번 같나 체크
-    // 통과하면 디비에 셋
     const data = this.body;
     try {
+      /*
+      1. 아이디 존재여부 판단
+      2. 비밀번호 일치여부 판단
+      3. 해쉬를 통해 salt와 암호화된 비밀번호 저장
+      */
       const info = await UserStorage.getInfo(data.id);
       return { result: false, msg: "아이디가 이미 존재합니다." };
     } catch (error) {
@@ -73,7 +75,6 @@ class User {
       data["salt"] = hashPsw.salt;
 
       const setInfo = await UserStorage.setInfo(data);
-      // 삽입 성공시 반환
       if (setInfo) return { result: true, msg: data.name };
     }
   }

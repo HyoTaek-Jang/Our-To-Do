@@ -1,6 +1,7 @@
 const User = require("../../model/User");
 const Todo = require("../../model/Todo");
 const Bookmark = require("../../model/Bookmark");
+const APIKEY = require("../../model/APIKEY");
 
 module.exports = {
   output: {
@@ -33,19 +34,15 @@ module.exports = {
   process: {
     login: async (req, res) => {
       const user = new User(req, res);
-      // 로그인 결과 받기
       const loginResult = await user.login();
 
       if (loginResult.result == true) {
-        //로그인 성공
         req.session.save(() => res.json(loginResult));
       } else {
-        // 실패
         res.json(loginResult);
       }
     },
     logout: async (req, res) => {
-      // 디비 login_cookie삭제
       const user = new User(req, res);
       await user.logout();
 
@@ -78,6 +75,9 @@ module.exports = {
       const bookmark = new Bookmark(req.body.del_id);
       await bookmark.delBookmark();
       res.json("good");
+    },
+    getAPIKEY: (req, res) => {
+      return res.send(APIKEY.getKey());
     },
   },
 };

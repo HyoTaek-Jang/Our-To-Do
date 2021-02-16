@@ -311,13 +311,13 @@ router.use("/", (req, res, next) => {
 ### 테스트
 
 - https가 아니라서 위치를 못받아옴.
-- 도메인 연결
-- api 키 숨기기
-- 코드 정리
 - 메인 페이지에서 newTap 설정 안내
 - https
-- sanitizeHtml - 자동으로 되는디?
 - 뭔 이상한 오류 왜 뜨는지... sql 오류 위에 적은거
+- 도메인 연결 ok
+- api 키 숨기기 ok
+- 코드 정리 ok
+- sanitizeHtml - 자동으로 되는디?
 
 ## 도메인 연결
 
@@ -339,3 +339,12 @@ sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-po
 # 왁!!!!!서버에 띄웠따!!!!!아니 도메인!!!!!!!! http://ourtodo.site/ 여깁니다요!!!!!!!!
 
 # 보안이랑 날씨를 위해 언능 https를 연결하쟝
+
+- APIKEY는 서버에서 받아옴
+
+- https가 아니라서 위치를 못받아옴.
+- 메인 페이지에서 newTap 설정 안내
+- https
+- 뭔 이상한 오류 왜 뜨는지... sql 오류 위에 적은거
+- 리드미에 사용법
+- api 명세서

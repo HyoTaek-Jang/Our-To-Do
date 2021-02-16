@@ -1,3 +1,5 @@
+const parentBox = document.querySelector(".toDo-CB");
+
 $(".todoForm").submit((e) => {
   e.preventDefault();
   if (!$("#todo-input").val()) {
@@ -40,8 +42,6 @@ async function displayTodo() {
     makeBox(data[i].todo_content, data[i].todo_id);
   }
 }
-
-const parentBox = document.querySelector(".toDo-CB");
 
 function makeBox(text, id) {
   const CONTENTBOX_TAG = document.createElement("div");

@@ -22,11 +22,12 @@
   color: white;
 }
 
-#start-button {
+.start-button {
+  margin: 0 20px;
   color: white;
   background-color: rgb(172, 172, 172);
   border-radius: 15px;
-  font-size: 35px;
+  font-size: 32px;
   width: 150px;
   height: 50px;
   color: #fff;
@@ -38,12 +39,12 @@
   outline: none;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.15);
 }
-#start-button:hover {
+.start-button:hover {
   background: #4c504f;
   color: #ffffff;
 }
-#start-button:before,
-#start-button:after {
+.start-button:before,
+.start-button:after {
   content: "";
   position: absolute;
   top: 0;
@@ -53,16 +54,20 @@
   background: #4c504f;
   transition: 400ms ease all;
 }
-#start-button:after {
+.start-button:after {
   right: inherit;
   top: inherit;
   left: 15px;
   bottom: 0;
 }
-#start-button:hover:before,
-#start-button:hover:after {
+.start-button:hover:before,
+.start-button:hover:after {
   width: 80%;
   transition: 800ms ease all;
+}
+
+#start-guide {
+  font-size: 30px;
 }
 
 /*  */

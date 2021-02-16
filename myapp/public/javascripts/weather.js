@@ -1,38 +1,25 @@
 const COORDS = "coords";
-const API_KEY = "0acc42e3154c1df24d2fedeaeddae0e2";
 const todayTemp = document.querySelector(".today-temp");
 const todayIcon = document.querySelector(".today-icon");
 const tmrTemp = document.querySelector(".tmr-temp");
 const tmrIcon = document.querySelector(".tmr-icon");
 
+function getKEY() {
+  return new Promise((resolve) => {
+    $.ajax({
+      url: "/main/weather",
+      type: "POST",
+      dataType: "text",
+      success: (key) => {
+        resolve(key);
+      },
+    });
+  });
+}
 // 날씨 정보 https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
 // https://openweathermap.org/api/one-call-api#history
-function getWeather(lat, lon) {
-  /*
-    $.ajax({
-    url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&
-    exclude=&appid=${API_KEY}&units=metric`,
-    dataType: "json",
-    success: (json) => {
-      console.log(json);
-      const weatherData = {
-        currentTemp: json.current.temp,
-        currentWeather: json.current.weather[0].icon,
-        tmrTempMax: json.daily[0].temp.max,
-        tmrTempMin: json.daily[0].temp.min,
-        tmrWeather: json.daily[0].weather[0].icon,
-      };
-
-      todayTemp.innerHTML = `${weatherData.currentTemp}`;
-      tmrTemp.innerHTML = `${Math.round(weatherData.tmrTempMax)} / ${Math.round(
-        weatherData.tmrTempMin
-      )}`;
-
-      askForWeatherIcon(todayIcon, weatherData.currentWeather);
-      askForWeatherIcon(tmrIcon, weatherData.tmrWeather);
-    },
-  });
-  */
+async function getWeather(lat, lon) {
+  const API_KEY = await getKEY();
   fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&
     exclude=&appid=${API_KEY}&units=metric`)
     .then(function (response) {

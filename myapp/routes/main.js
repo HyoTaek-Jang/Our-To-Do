@@ -13,4 +13,6 @@ router.post("/bookmark", ctrl.process.addBookmark);
 router.get("/bookmark", ctrl.output.getBookmark);
 router.delete("/bookmark", ctrl.process.delBookmark);
 
+router.post("/weather", ctrl.process.getAPIKEY);
+
 module.exports = router;
