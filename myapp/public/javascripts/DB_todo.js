@@ -13,6 +13,8 @@ $(".todoForm").submit((e) => {
       // 디비에서 제이슨으로 주루루룩~! 받고 그걸 화면에 띄우쟝!
       $("#todo-input").val("");
       $("#todo-input").focus();
+      cleanTodo();
+      displayTodo();
     },
   });
 });
@@ -42,7 +44,7 @@ async function displayTodo() {
   }
 }
 
-const parentBox = document.querySelector(".l_contentBox");
+const parentBox = document.querySelector(".toDo-CB");
 
 function makeBox(text, id) {
   const CONTENTBOX_TAG = document.createElement("div");
@@ -107,6 +109,12 @@ function handleToggle(event) {
       event.target.innerHTML = "SHOW";
       toggleBM.classList.add(SHOWING_CN);
     }
+  }
+}
+
+function cleanTodo() {
+  while (parentBox.hasChildNodes()) {
+    parentBox.removeChild(parentBox.firstChild);
   }
 }
 
