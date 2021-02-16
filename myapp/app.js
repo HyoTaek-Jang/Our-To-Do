@@ -5,8 +5,9 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require("express-session");
 const dotenv = require("dotenv");
-
+const compression = require("compression");
 dotenv.config();
+
 const sessionStore = require("./config/dbStore");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
@@ -25,6 +26,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({

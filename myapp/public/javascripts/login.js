@@ -14,14 +14,13 @@ $("#login-button").click(() => {
     },
     success: (result) => {
       if (result.result) {
-        alert(result.msg + "님 로그인 돼쓰여");
         location.href = "/main";
       } else {
-        alert(result.msg);
+        alert("Error : " + result.msg);
       }
     },
     error: (err) => {
-      alert("로그인 통신 오류");
+      alert("로그인 통신에 오류가 발생했습니다.");
     },
   });
 });
@@ -44,15 +43,14 @@ $("#register-button").click(() => {
         "confirm-password": $("#register-confirm-password").val(),
       },
       success: (result) => {
-        console.log(result);
         if (result.result == true) {
-          alert(result.msg + "님 회원가입 ㅊㅋ");
+          alert(result.msg + "님 환영합니다.");
           location.href = "/user/login";
-        } else alert("회원가입 실패!! " + result.msg);
+        } else alert("Error : " + result.msg);
       },
       error: (err) => {
-        alert("회원가입 통신 오류");
+        alert("회원가입 통신에 오류가 발생했습니다.");
       },
     });
-  } else alert("빈칸이 있으면 안되지여~");
+  } else alert("빈칸이 존재합니다.");
 });

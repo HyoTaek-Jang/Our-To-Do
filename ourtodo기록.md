@@ -274,3 +274,36 @@ router.use("/", (req, res, next) => {
 ### 동일한 방법으로 bookmark 완성
 
 # 끝났다!!!!!!!!!! 완성!!!!!!!!!!!
+
+## 앞으로 할 거
+
+- api 키 숨기기
+- 코드 정리
+- 메인 페이지에서 newTap 설정 안내
+- https
+- 보안모듈...
+- 다양한 모듈 헬멧이랑 sanitize html 이런거
+- 도메인 연결
+- alert 문구 정리 -> ok
+- bookmark 자동으로 http 삽입 -> ok
+- csp문제
+
+```
+0|www      |     at Protocol._enqueue (C:\Users\HYOTAEK\Desktop\아주대\Programing_Study\momentum_clone_pj\myapp\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+0|www      |     at Connection.query (C:\Users\HYOTAEK\Desktop\아주대\Programing_Study\momentum_clone_pj\myapp\node_modules\mysql\lib\Connection.js:198:25)
+0|www      |     at C:\Users\HYOTAEK\Desktop\아주대\Programing_Study\momentum_clone_pj\myapp\model\Todo.js:23:10
+0|www      |     at new Promise (<anonymous>)
+0|www      |     at Todo.getTodo (C:\Users\HYOTAEK\Desktop\아주대\Programing_Study\momentum_clone_pj\myapp\model\Todo.js:22:12)
+0|www      |     at getTodo (C:\Users\HYOTAEK\Desktop\아주대\Programing_Study\momentum_clone_pj\myapp\routes\ctrl\home.js:21:31)
+0|www      |     at Layer.handle [as handle_request] (C:\Users\HYOTAEK\Desktop\아주대\Programing_Study\momentum_clone_pj\myapp\node_modules\express\lib\router\layer.js:95:5)
+0|www      |     at next (C:\Users\HYOTAEK\Desktop\아주대\Programing_Study\momentum_clone_pj\myapp\node_modules\express\lib\router\route.js:137:13)
+0|www      |     at Route.dispatch (C:\Users\HYOTAEK\Desktop\아주대\Programing_Study\momentum_clone_pj\myapp\node_modules\express\lib\router\route.js:112:3)
+0|www      |     at Layer.handle [as handle_request] (C:\Users\HYOTAEK\Desktop\아주대\Programing_Study\momentum_clone_pj\myapp\node_modules\express\lib\router\layer.js:95:5) {
+0|www      |   errno: -4077,
+0|www      |   code: 'ECONNRESET',
+0|www      |   syscall: 'read',
+0|www      |   fatal: true
+0|www      | }
+
+무슨에러?
+```

@@ -8,6 +8,31 @@ const tmrIcon = document.querySelector(".tmr-icon");
 // 날씨 정보 https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
 // https://openweathermap.org/api/one-call-api#history
 function getWeather(lat, lon) {
+  /*
+    $.ajax({
+    url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&
+    exclude=&appid=${API_KEY}&units=metric`,
+    dataType: "json",
+    success: (json) => {
+      console.log(json);
+      const weatherData = {
+        currentTemp: json.current.temp,
+        currentWeather: json.current.weather[0].icon,
+        tmrTempMax: json.daily[0].temp.max,
+        tmrTempMin: json.daily[0].temp.min,
+        tmrWeather: json.daily[0].weather[0].icon,
+      };
+
+      todayTemp.innerHTML = `${weatherData.currentTemp}`;
+      tmrTemp.innerHTML = `${Math.round(weatherData.tmrTempMax)} / ${Math.round(
+        weatherData.tmrTempMin
+      )}`;
+
+      askForWeatherIcon(todayIcon, weatherData.currentWeather);
+      askForWeatherIcon(tmrIcon, weatherData.tmrWeather);
+    },
+  });
+  */
   fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&
     exclude=&appid=${API_KEY}&units=metric`)
     .then(function (response) {
@@ -27,8 +52,6 @@ function getWeather(lat, lon) {
       tmrTemp.innerHTML = `${Math.round(weatherData.tmrTempMax)} / ${Math.round(
         weatherData.tmrTempMin
       )}`;
-
-      console.log(weatherData);
 
       askForWeatherIcon(todayIcon, weatherData.currentWeather);
       askForWeatherIcon(tmrIcon, weatherData.tmrWeather);
@@ -50,7 +73,6 @@ function saveCurrentCoordsc(Obj) {
 
 function handleGeoSucces(position) {
   console.log("succes for get Geo");
-  console.log(position);
 
   const latitude = position.coords.latitude;
   const longitude = position.coords.longitude;
@@ -69,6 +91,7 @@ function handleGeoError() {
 }
 
 function askForCoords() {
+  console.log("check geo");
   navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
 }
 

@@ -17,7 +17,7 @@ class User {
         userInfo.user_salt
       );
       if (hashPsw.hashPsw != userInfo.user_password) {
-        return { result: false, msg: "비밀번호가 다름" };
+        return { result: false, msg: "비밀번호가 다릅니다." };
       }
 
       // 'auto-login' == 'on' 이면 자동로그인되게
@@ -41,7 +41,7 @@ class User {
       };
     } catch (error) {
       console.log(error);
-      return { result: false, msg: "아이디가 존재하지 않음" };
+      return { result: false, msg: "아이디가 존재하지 않습니다." };
     }
   }
 
@@ -64,10 +64,10 @@ class User {
     console.log(data);
     try {
       const info = await UserStorage.getInfo(data.id);
-      return { result: false, msg: "아이디가 이미 존재함" };
+      return { result: false, msg: "아이디가 이미 존재합니다." };
     } catch (error) {
       if (data.password != data["confirm-password"])
-        return { result: false, msg: "비밀번호가 다름" };
+        return { result: false, msg: "비밀번호가 다릅니다." };
 
       const hashPsw = await UserStorage.hashPsw(data.password);
       data["hashPsw"] = hashPsw.hashPsw;

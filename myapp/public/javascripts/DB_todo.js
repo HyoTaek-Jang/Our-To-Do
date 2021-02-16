@@ -1,7 +1,7 @@
 $(".todoForm").submit((e) => {
   e.preventDefault();
   if (!$("#todo-input").val()) {
-    alert("인풋비었음");
+    alert("빈칸이 존재합니다.");
     return false;
   }
   $.ajax({
@@ -81,37 +81,6 @@ function handleDel(event) {
   });
 }
 
-const toggle = document.querySelectorAll(".toggle");
-
-const toggleTD = document.querySelector(".toDo-CB");
-const toggleBM = document.querySelector(".bookmark-CB");
-
-function loadtoggle() {
-  toggle.forEach(function (e) {
-    e.addEventListener("click", handleToggle);
-  });
-}
-
-function handleToggle(event) {
-  if (event.target.parentNode.className == "toDo-header") {
-    if (event.target.innerHTML == "SHOW") {
-      event.target.innerHTML = "HIDE";
-      toggleTD.classList.remove(SHOWING_CN);
-    } else {
-      event.target.innerHTML = "SHOW";
-      toggleTD.classList.add(SHOWING_CN);
-    }
-  } else {
-    if (event.target.innerHTML == "SHOW") {
-      event.target.innerHTML = "HIDE";
-      toggleBM.classList.remove(SHOWING_CN);
-    } else {
-      event.target.innerHTML = "SHOW";
-      toggleBM.classList.add(SHOWING_CN);
-    }
-  }
-}
-
 function cleanTodo() {
   while (parentBox.hasChildNodes()) {
     parentBox.removeChild(parentBox.firstChild);
@@ -120,7 +89,6 @@ function cleanTodo() {
 
 function init() {
   displayTodo();
-  loadtoggle();
 }
 
 init();

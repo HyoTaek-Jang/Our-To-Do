@@ -1,15 +1,22 @@
 $(".bookmarkForm").submit((e) => {
   e.preventDefault();
-  if (!$("#bookmark-input-title").val() || !$("#bookmark-input-url").val()) {
-    alert("둘다 채우셈");
+  const title = $("#bookmark-input-title").val();
+  let url = $("#bookmark-input-url").val();
+
+  if (!title || !url) {
+    alert("빈칸이 존재합니다.");
     return false;
+  }
+
+  if (!url.includes("http")) {
+    url = "https://" + url;
   }
   $.ajax({
     url: "/main/bookmark",
     type: "POST",
     data: {
-      "bookmark-title": $("#bookmark-input-title").val(),
-      "bookmark-url": $("#bookmark-input-url").val(),
+      "bookmark-title": title,
+      "bookmark-url": url,
     },
     success: () => {
       cleanBookmark();

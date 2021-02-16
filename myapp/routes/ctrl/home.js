@@ -67,7 +67,6 @@ module.exports = {
       res.json("good");
     },
     addBookmark: async (req, res) => {
-      console.log(req.body);
       const bookmark = new Bookmark(req.session.userId);
       await bookmark.setBookmark(
         req.body["bookmark-url"],
@@ -76,7 +75,6 @@ module.exports = {
       res.json("good");
     },
     delBookmark: async (req, res) => {
-      console.log(req.body);
       const bookmark = new Bookmark(req.body.del_id);
       await bookmark.delBookmark();
       res.json("good");
