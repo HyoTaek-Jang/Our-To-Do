@@ -8,9 +8,7 @@ $(".todoForm").submit((e) => {
     url: "/main/todo",
     type: "POST",
     data: { "todo-input": $("#todo-input").val() },
-    success: (result) => {
-      //db로드해서 창 띄우기
-      // 디비에서 제이슨으로 주루루룩~! 받고 그걸 화면에 띄우쟝!
+    success: () => {
       $("#todo-input").val("");
       $("#todo-input").focus();
       cleanTodo();
@@ -39,7 +37,6 @@ async function displayTodo() {
   const data = await loadTodo();
 
   for (i = 0; i < data.length; i++) {
-    console.log(data[i]);
     makeBox(data[i].todo_content, data[i].todo_id);
   }
 }
@@ -82,10 +79,6 @@ function handleDel(event) {
       console.log("delete : ", result);
     },
   });
-
-  // todo update 요청
-
-  // displayTodo();
 }
 
 const toggle = document.querySelectorAll(".toggle");
@@ -100,8 +93,6 @@ function loadtoggle() {
 }
 
 function handleToggle(event) {
-  console.log(event.target.parentNode.className);
-
   if (event.target.parentNode.className == "toDo-header") {
     if (event.target.innerHTML == "SHOW") {
       event.target.innerHTML = "HIDE";

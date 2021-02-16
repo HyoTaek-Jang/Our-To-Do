@@ -1,0 +1,89 @@
+$(".bookmarkForm").submit((e) => {
+  e.preventDefault();
+  if (!$("#bookmark-input-title").val() || !$("#bookmark-input-url").val()) {
+    alert("둘다 채우셈");
+    return false;
+  }
+  $.ajax({
+    url: "/main/bookmark",
+    type: "POST",
+    data: {
+      "bookmark-title": $("#bookmark-input-title").val(),
+      "bookmark-url": $("#bookmark-input-url").val(),
+    },
+    success: () => {
+      cleanBookmark();
+      loadBookmark();
+      $("#bookmark-input-title").val("");
+      $("#bookmark-input-url").val("");
+      $("#bookmark-input-title").focus();
+    },
+  });
+});
+const parentCB = document.querySelector(".bookmark-CB");
+
+function loadBookmark() {
+  $.ajax({
+    url: "/main/bookmark",
+    type: "GET",
+    dataType: "json",
+    success: (data) => {
+      for (i = 0; i < data.length; i++) {
+        displayBookmark(
+          data[i].bookmark_id,
+          data[i].bookmark_link,
+          data[i].bookmark_title
+        );
+      }
+    },
+  });
+}
+
+function displayBookmark(id, url, title) {
+  const B_contentBox = document.createElement("div");
+  const B_hyper = document.createElement("a");
+  const B_del = document.createElement("div");
+
+  B_hyper.target = "_black";
+
+  B_contentBox.classList.add("l_contentBox-contents", "flex");
+  B_contentBox.id = id;
+  B_hyper.classList.add("bookmark-content-hyper");
+  B_del.classList.add("bookmark-content-del");
+
+  parentCB.appendChild(B_contentBox);
+  B_contentBox.appendChild(B_hyper);
+  B_contentBox.appendChild(B_del);
+
+  B_hyper.href = url;
+  B_hyper.innerHTML = title;
+  B_hyper.target = "_self";
+
+  B_del.addEventListener("click", delBookmark);
+}
+
+function delBookmark(e) {
+  const removeT = e.target.parentNode;
+  parentCB.removeChild(removeT);
+
+  $.ajax({
+    url: "/main/bookmark",
+    type: "DELETE",
+    data: { del_id: `${removeT.id}` },
+    success: (result) => {
+      console.log("delete : ", result);
+    },
+  });
+}
+
+function cleanBookmark() {
+  while (parentCB.hasChildNodes()) {
+    parentCB.removeChild(parentCB.firstChild);
+  }
+}
+
+function init() {
+  loadBookmark();
+}
+
+init();

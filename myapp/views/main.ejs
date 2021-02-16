@@ -16,17 +16,18 @@
     <script src="/javascripts/clock.js" defer></script>
     <script src="/javascripts/greeting.js" defer></script>
     <!-- <script src="/javascripts/todo.js" defer></script> -->
-    <script src="/javascripts/bookmark.js" defer></script>
+    <!-- <script src="/javascripts/bookmark.js" defer></script> -->
     <script src="/javascripts/weather.js" defer></script>
     <script src="/javascripts/logout.js" defer></script>
     <script src="/javascripts/DB_todo.js" defer></script>
+    <script src="/javascripts/DB_bookmark.js" defer></script>
 
     <title>Our-To-Do</title>
   </head>
   <body>
     <div class="main-wrapper">
       <div class="navigator">
-        <a class="tool-bar-home" href="/">home</a>
+        <a class="tool-bar-home" href="/intro">home</a>
         <div class="tool-bar">
           <p id="logout">Logout</p>
         </div>
@@ -106,10 +107,16 @@
                     class="B_title"
                     type="text"
                     placeholder="Write Title"
+                    id="bookmark-input-title"
                   />
                 </div>
                 <div class="bookmark-input">
-                  <input class="B_URL" type="text" placeholder="Write URL" />
+                  <input
+                    class="B_URL"
+                    type="text"
+                    placeholder="Write URL"
+                    id="bookmark-input-url"
+                  />
                 </div>
                 <input type="submit" style="display: none" />
               </form>

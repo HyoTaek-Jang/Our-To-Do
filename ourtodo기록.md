@@ -252,4 +252,25 @@ router.use("/", (req, res, next) => {
 
 - todo 디스플레이
 
+  - db에 요청 보내서 json 리스트 받고 포문으로 돌리면서 그려줌
+
 - todo 추가 시 디스플레이
+
+  - 기존 투두 지우고 새롭게 그림
+
+  ```
+    while (parentBox.hasChildNodes()) {
+    parentBox.removeChild(parentBox.firstChild);
+  }
+  ```
+
+  - 기존 투두 자식 지우는 코드
+
+- todo del
+  - 그냥 디스플레이는 지우고, 삭제 요청 보내서 디비에서 없앰.
+
+### todo 테스트 완료 성공!
+
+### 동일한 방법으로 bookmark 완성
+
+# 끝났다!!!!!!!!!! 완성!!!!!!!!!!!

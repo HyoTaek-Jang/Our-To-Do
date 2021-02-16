@@ -328,6 +328,10 @@
   text-indent: -9999px;
 }
 
+.bookmark-content-del:hover {
+  cursor: pointer;
+}
+
 .bookmark-form {
   width: 500px;
   margin: 0 auto;

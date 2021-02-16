@@ -11,7 +11,7 @@ function loadURL() {
 }
 
 function handleBookmark(e) {
-  event.preventDefault();
+  e.preventDefault();
   makeBookmarkBox(B_URL.value, B_title.value);
 }
 
@@ -44,6 +44,7 @@ function makeBookmarkBox(URL, TITLE) {
 
     B_hyper.href = URL;
     B_hyper.innerHTML = TITLE;
+    B_hyper.target = "_self";
 
     B_URL.value = "";
     B_title.value = "";
@@ -87,5 +88,3 @@ function init() {
 }
 
 init();
-
-//  https:// 자동으로 쳐지게 , scheme?? , 날씨, 시작페이지 설정하는 버튼?, 명언 랜덤하게 뜨게?.

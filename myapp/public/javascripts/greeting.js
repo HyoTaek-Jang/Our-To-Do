@@ -45,7 +45,7 @@ function loadName() {
 }
 
 function init() {
-  clearAll.addEventListener("click", handleClear);
+  // clearAll.addEventListener("click", handleClear);
   // loadName();
 }
 
