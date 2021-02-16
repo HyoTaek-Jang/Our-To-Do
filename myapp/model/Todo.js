@@ -25,11 +25,18 @@ class Todo {
         [this.id],
         (err, data) => {
           if (err) console.error(err);
-          console.log(this.id);
-          console.log("todo model", data);
           resolve(data);
         }
       );
+    });
+  }
+
+  delTodo() {
+    return new Promise((resolve) => {
+      db.query("DELETE FROM todo WHERE todo_id = ? ", [this.id], (err) => {
+        if (err) console.error(err);
+        resolve();
+      });
     });
   }
 }

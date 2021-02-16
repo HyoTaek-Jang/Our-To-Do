@@ -19,7 +19,6 @@ module.exports = {
     getTodo: async (req, res) => {
       const todo = new Todo(req.session.userId);
       const data = await todo.getTodo();
-      console.log(data);
       res.json(data);
     },
   },
@@ -53,6 +52,11 @@ module.exports = {
       const todo = new Todo(req.session.userId);
       await todo.setTodo(req.body["todo-input"]);
       res.json(req.body);
+    },
+    delTodo: async (req, res) => {
+      const todo = new Todo(req.body.del_id);
+      await todo.delTodo();
+      res.json("good");
     },
   },
 };

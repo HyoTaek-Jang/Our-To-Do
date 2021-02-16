@@ -6,5 +6,6 @@ const ctrl = require("./ctrl/home.js");
 router.get("/", ctrl.output.main);
 router.post("/todo", ctrl.process.addTodo);
 router.get("/todo", ctrl.output.getTodo);
+router.delete("/todo", ctrl.process.delTodo);
 
 module.exports = router;

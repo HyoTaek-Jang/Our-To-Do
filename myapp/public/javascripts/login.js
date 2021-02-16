@@ -45,8 +45,10 @@ $("#register-button").click(() => {
       },
       success: (result) => {
         console.log(result);
-        if (result.result == true) alert(result.msg + "님 회원가입 ㅊㅋ");
-        else alert("회원가입 실패!! " + result.msg);
+        if (result.result == true) {
+          alert(result.msg + "님 회원가입 ㅊㅋ");
+          location.href = "/user/login";
+        } else alert("회원가입 실패!! " + result.msg);
       },
       error: (err) => {
         alert("회원가입 통신 오류");

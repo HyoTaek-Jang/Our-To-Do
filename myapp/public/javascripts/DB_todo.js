@@ -74,6 +74,15 @@ function handleDel(event) {
   const removeT = target.parentNode;
   parentBox.removeChild(removeT);
 
+  $.ajax({
+    url: "/main/todo",
+    type: "DELETE",
+    data: { del_id: `${removeT.id}` },
+    success: (result) => {
+      console.log("delete : ", result);
+    },
+  });
+
   // todo update 요청
 
   // displayTodo();
