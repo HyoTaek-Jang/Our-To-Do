@@ -17,6 +17,21 @@ class Todo {
       );
     });
   }
+
+  getTodo() {
+    return new Promise((resolve) => {
+      db.query(
+        "SELECT todo_id, todo_content FROM todo WHERE user_user_id = ?",
+        [this.id],
+        (err, data) => {
+          if (err) console.error(err);
+          console.log(this.id);
+          console.log("todo model", data);
+          resolve(data);
+        }
+      );
+    });
+  }
 }
 
 module.exports = Todo;

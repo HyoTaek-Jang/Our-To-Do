@@ -196,8 +196,8 @@
 }
 
 .main-weather-icon {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   background-position: center;
   background-size: cover;
   text-indent: -9999px;
@@ -246,7 +246,7 @@
 
 .main-clock {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 170px;
+  font-size: 160px;
 }
 
 .main-welcome {

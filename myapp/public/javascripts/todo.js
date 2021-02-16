@@ -51,6 +51,7 @@ function handleDel(event) {
 
   toDos = newToDos;
   localStorage.setItem("toDos", JSON.stringify(toDos));
+  // todo update 요청
 }
 
 function handleTodo(event) {
@@ -58,6 +59,7 @@ function handleTodo(event) {
   makeBox(todoInput.value);
   todoInput.value = "";
   localStorage.setItem("toDos", JSON.stringify(toDos));
+  // todo update 요청
 }
 
 function paintToDos(parasedTodos) {
@@ -67,6 +69,8 @@ function paintToDos(parasedTodos) {
 }
 
 function loadTodos() {
+  // todo get 요청
+  // 로컬에 저장
   const currentTodos = localStorage.getItem("toDos");
   if (currentTodos !== null) {
     const parasedTodos = JSON.parse(currentTodos);
@@ -115,5 +119,3 @@ function init() {
 }
 
 init();
-
-// del 기능 구현

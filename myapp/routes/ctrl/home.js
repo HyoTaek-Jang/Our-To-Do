@@ -16,6 +16,12 @@ module.exports = {
       if (req.session.authenticate) res.redirect("/main");
       else res.render("login");
     },
+    getTodo: async (req, res) => {
+      const todo = new Todo(req.session.userId);
+      const data = await todo.getTodo();
+      console.log(data);
+      res.json(data);
+    },
   },
   process: {
     login: async (req, res) => {
