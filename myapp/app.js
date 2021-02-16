@@ -41,9 +41,9 @@ app.use(
     },
   })
 );
+app.use(cookieMiddle);
+app.use(autoLoginMiddle);
 
-app.use("*", cookieMiddle);
-app.use("*", autoLoginMiddle);
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 app.use("/main", mainRouter);

@@ -277,13 +277,13 @@ router.use("/", (req, res, next) => {
 
 ## 앞으로 할 거
 
+- 도메인 연결
 - api 키 숨기기
 - 코드 정리
 - 메인 페이지에서 newTap 설정 안내
 - https
 - 보안모듈...
 - 다양한 모듈 헬멧이랑 sanitize html 이런거
-- 도메인 연결
 - alert 문구 정리 -> ok
 - bookmark 자동으로 http 삽입 -> ok
 - csp문제
@@ -307,3 +307,35 @@ router.use("/", (req, res, next) => {
 
 무슨에러?
 ```
+
+### 테스트
+
+- https가 아니라서 위치를 못받아옴.
+- 도메인 연결
+- api 키 숨기기
+- 코드 정리
+- 메인 페이지에서 newTap 설정 안내
+- https
+- sanitizeHtml - 자동으로 되는디?
+- 뭔 이상한 오류 왜 뜨는지... sql 오류 위에 적은거
+
+## 도메인 연결
+
+- 고정 아이피 설정함 (탄력ip)
+- 가비아에서 도메인 구매후, aws route 53에서 설정을 거쳐 도메인을 적용함.
+- https://sovovy.tistory.com/37
+- https://artiiicy.tistory.com/18
+- 이후 https를 연결할 게획
+- https://velog.io/@neity16/EC2-https%EC%84%A4%EC%A0%95Nodejsletsencrypt
+- 도메인 확인
+- https://www.ultratools.com/tools/dnsLookupResult
+
+- 80번 포트에 요청왔을 시 3000번으로 돌리는
+
+```
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+```
+
+# 왁!!!!!서버에 띄웠따!!!!!아니 도메인!!!!!!!! http://ourtodo.site/ 여깁니다요!!!!!!!!
+
+# 보안이랑 날씨를 위해 언능 https를 연결하쟝

@@ -61,7 +61,6 @@ class User {
     // 비번 같나 체크
     // 통과하면 디비에 셋
     const data = this.body;
-    console.log(data);
     try {
       const info = await UserStorage.getInfo(data.id);
       return { result: false, msg: "아이디가 이미 존재합니다." };
@@ -75,7 +74,7 @@ class User {
 
       const setInfo = await UserStorage.setInfo(data);
       // 삽입 성공시 반환
-      if (setInfo) return { result: true, msg: data.id };
+      if (setInfo) return { result: true, msg: data.name };
     }
   }
 }

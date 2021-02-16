@@ -1,23 +1,23 @@
-# momentume_clone
-클론코딩을 통한 HTML,CSS,JS 스터디
+# OurToDo
+
+ToDO, Bookmark, Weather Info 등을 제공하는 웹어플리케이션
+
+## 기술스택
+
+- html, css, js, nodejs, ejs, aws, route53, mysql
+
+- crypto를 통해 로그인 보안처리
 
 ## 기능설명
-- 초기 시작화면에서 자신의 이름을 설정하고 탭을 사용한다.
+
+- 회원가입과 로그인을 거쳐 사용한다.
 
 ## To-Do-List
+
 - To-Do-List 추가 : 하단 Write here 에 타이핑 후 엔터키를 통해 리스트 업.
 - To-Do-List 삭제 : 리스트 옆 엑스박스 클릭으로 삭제.
 
 ## Bookmark
-- Bookmark 추가 :  To-Do-List와 동일하게 URL과 TITLE 작성 후 엔터. 단, 둘다 작성되어야 리스트 업 가능.
-- Bookmark 삭제 :  리스트옆 휴지통 모양을 클릭하여 삭제.
 
-## 초기화
-- 좌측 상단 되돌리기 버튼을 통해 초기화
-
-
-### 보완할 점
-- 미디어쿼리를 통한 반응형.
-- 코드 정리
-- 폴더 정리
-- 리팩토링
+- Bookmark 추가 : To-Do-List와 동일하게 URL과 TITLE 작성 후 엔터. 단, 둘다 작성되어야 리스트 업 가능.
+- Bookmark 삭제 : 리스트옆 휴지통 모양을 클릭하여 삭제.
