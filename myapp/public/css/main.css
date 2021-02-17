@@ -257,6 +257,13 @@
   display: none;
 }
 
+.main-welcome p {
+  font-size: 12px;
+  color: rgb(230, 230, 230);
+  padding-top: 30px;
+  font-family: "맑은고딕", "Malgun Gothic", serif;
+}
+
 .main-enterName {
   box-sizing: border-box;
   padding-top: 120px;

@@ -39,3 +39,5 @@ OurToDo는 PC, 크롬을 기준으로 제작되었습니다.
 - Login 기능에서 Enter를 통한 submit 구현
 - Login Placehold 수정
 - 북마크 URL 자동 http 프로토콜 추가 기능 버그 업데이트
+- db 북마크 링크 길이 제한 해제
+- 푸터 작업을 통한 사용자 문의사항 창구 개설

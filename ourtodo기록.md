@@ -368,6 +368,6 @@ sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-po
 
 - https 지원안하는 사이트가 있을 수 있으니까 자동 삽입을 https대신 http://
 - 엔터로 로그인 -> form으로 감싸고 프리벤트 디폴트
-- 문의사항 표시
+- 문의사항 표시 - 완료
 
 - 깃에 올라간 파일 삭제 git rm --cached [File Name]
