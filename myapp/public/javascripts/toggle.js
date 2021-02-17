@@ -1,7 +1,7 @@
 const toggle = document.querySelectorAll(".toggle");
-
 const toggleTD = document.querySelector(".toDo-CB");
 const toggleBM = document.querySelector(".bookmark-CB");
+const SHOWING_CN = "show";
 
 function loadtoggle() {
   toggle.forEach(function (e) {
