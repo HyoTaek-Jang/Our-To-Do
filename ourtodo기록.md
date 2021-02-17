@@ -363,3 +363,11 @@ sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-po
   3. http 접속시 https로 돌리기 - httpsRedirect 미들웨어로 해결
 
 # 끝.
+
+## 21년 2월 17일
+
+- https 지원안하는 사이트가 있을 수 있으니까 자동 삽입을 https대신 http://
+- 엔터로 로그인 -> form으로 감싸고 프리벤트 디폴트
+- 문의사항 표시
+
+- 깃에 올라간 파일 삭제 git rm --cached [File Name]

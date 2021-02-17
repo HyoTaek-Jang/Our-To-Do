@@ -1,3 +1,5 @@
+const parentCB = document.querySelector(".bookmark-CB");
+
 $(".bookmarkForm").submit((e) => {
   e.preventDefault();
   const title = $("#bookmark-input-title").val();
@@ -9,7 +11,7 @@ $(".bookmarkForm").submit((e) => {
   }
 
   if (!url.includes("http")) {
-    url = "https://" + url;
+    url = "http://" + url;
   }
   $.ajax({
     url: "/main/bookmark",
@@ -27,7 +29,6 @@ $(".bookmarkForm").submit((e) => {
     },
   });
 });
-const parentCB = document.querySelector(".bookmark-CB");
 
 function loadBookmark() {
   $.ajax({

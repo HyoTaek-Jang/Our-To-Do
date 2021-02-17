@@ -2,7 +2,8 @@ $(".message a").click(function () {
   $(".form-box").animate({ height: "toggle", opacity: "toggle" }, "slow");
 });
 
-$("#login-button").click(() => {
+$("#login-form").submit((e) => {
+  e.preventDefault();
   $.ajax({
     url: "/user/login",
     type: "POST",
@@ -25,7 +26,8 @@ $("#login-button").click(() => {
   });
 });
 
-$("#register-button").click(() => {
+$("#register-form").submit((e) => {
+  e.preventDefault();
   if (
     $("#register-name").val() &&
     $("#register-id").val() &&
