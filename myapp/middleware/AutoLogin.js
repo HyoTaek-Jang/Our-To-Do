@@ -25,8 +25,10 @@ const autoLogin = async (req, res, next) => {
 
       await LoginCookie.getSession(req, checkCookie.cookie_user_id);
       req.session.save();
-      next();
+    } else {
+      await LoginCookie.deleteToDB(checkCookie.cookie_user_id);
     }
+    next();
   } catch (error) {
     console.error(error);
     next();
