@@ -11,10 +11,9 @@ $(".todoForm").submit((e) => {
     type: "POST",
     data: { "todo-input": $("#todo-input").val() },
     success: () => {
+      makeBox($("#todo-input").val());
       $("#todo-input").val("");
       $("#todo-input").focus();
-      cleanTodo();
-      displayTodo();
     },
   });
 });
@@ -43,14 +42,16 @@ async function displayTodo() {
   }
 }
 
-function makeBox(text, id) {
-  const CONTENTBOX_TAG = document.createElement("div");
+function makeBox(text, id = 0) {
+  const CONTENTBOX_TAG = document.createElement("li");
   const CONTENT_TAG = document.createElement("div");
   const P_TAG = document.createElement("P");
   const DELETE_TAG = document.createElement("div");
+  const IDX_TAG = document.createElement("span");
 
   parentBox.appendChild(CONTENTBOX_TAG);
   CONTENTBOX_TAG.appendChild(CONTENT_TAG);
+  CONTENTBOX_TAG.appendChild(IDX_TAG);
   CONTENT_TAG.appendChild(P_TAG);
   CONTENTBOX_TAG.appendChild(DELETE_TAG);
 

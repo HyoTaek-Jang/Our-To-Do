@@ -231,7 +231,8 @@
 .W13d {
   background-image: url(/image/weather/W13d.png);
 }
-.W50d {
+.W50d,
+.W50n {
   background-image: url(/image/weather/W50d.png);
 }
 
@@ -423,6 +424,17 @@
 /* Mediaqueries */
 
 @media screen and (min-height: 800px) {
+  html {
+    width: 1550px;
+  }
+
+  .toDo-content {
+    width: 290px;
+  }
+  .bookmark-content-hyper {
+    width: 210px;
+  }
+
   .l_contentBox {
     height: 520px;
   }
@@ -433,6 +445,17 @@
 }
 
 @media screen and (min-height: 900px) {
+  html {
+    width: 1600px;
+  }
+
+  .toDo-content {
+    width: 310px;
+  }
+  .bookmark-content-hyper {
+    width: 210px;
+  }
+
   .l_contentBox {
     height: 620px;
   }
@@ -443,6 +466,17 @@
 }
 
 @media screen and (min-height: 1000px) {
+  html {
+    width: 1700px;
+  }
+
+  .toDo-content {
+    width: 350px;
+  }
+  .bookmark-content-hyper {
+    width: 240px;
+  }
+
   .l_contentBox {
     height: 720px;
   }

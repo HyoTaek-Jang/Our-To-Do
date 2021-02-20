@@ -58,6 +58,11 @@ module.exports = {
       await todo.setTodo(req.body["todo-input"]);
       res.json(req.body);
     },
+    patchTodoIdx: async (req, res) => {
+      const todo = new Todo(req.body["todoIdx[]"]);
+      todo.patchTodoIdx();
+      res.json("good");
+    },
     delTodo: async (req, res) => {
       const todo = new Todo(req.body.del_id);
       await todo.delTodo();
@@ -69,6 +74,11 @@ module.exports = {
         req.body["bookmark-url"],
         req.body["bookmark-title"]
       );
+      res.json("good");
+    },
+    patchBookmarkIdx: async (req, res) => {
+      const bookmark = new Bookmark(req.body["bookmarkIdx[]"]);
+      bookmark.patchBookmarkIdx();
       res.json("good");
     },
     delBookmark: async (req, res) => {

@@ -22,7 +22,7 @@ class Bookmark {
   getBookmark() {
     return new Promise((resolve, reject) => {
       db.query(
-        "SELECT bookmark_id, bookmark_title, bookmark_link FROM bookmark WHERE user_user_id = ?",
+        "SELECT bookmark_id, bookmark_title, bookmark_link FROM bookmark WHERE user_user_id = ? ORDER BY bookmark_idx",
         [this.id],
         (err, data) => {
           if (err) console.log(err);
@@ -41,6 +41,18 @@ class Bookmark {
         (err) => {
           if (err) console.error(err);
           resolve();
+        }
+      );
+    });
+  }
+
+  patchBookmarkIdx() {
+    this.id.forEach((item, index) => {
+      db.query(
+        "UPDATE bookmark SET bookmark_idx = ? WHERE bookmark_id = ?",
+        [index + 1, item],
+        (err) => {
+          if (err) console.error(err);
         }
       );
     });

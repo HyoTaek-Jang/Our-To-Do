@@ -16,6 +16,7 @@
     <link rel="shortcut icon" type="" href="/image/favicon.ico" />
 
     <script src="/javascripts/jquery.js" defer></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <script src="/javascripts/clock.js" defer></script>
     <script src="/javascripts/weather.js" defer></script>
     <script src="/javascripts/logout.js" defer></script>
@@ -23,6 +24,7 @@
     <script src="/javascripts/DB_bookmark.js" defer></script>
     <script src="/javascripts/autocomplete.js" defer></script>
     <script src="/javascripts/toggle.js" defer></script>
+    <script src="/javascripts/sortable.js" defer></script>
 
     <title>Our-To-Do</title>
   </head>
@@ -44,7 +46,7 @@
 
             <span class="lineShort"> </span>
 
-            <div class="l_contentBox toDo-CB show"></div>
+            <ul class="l_contentBox sortable-todo toDo-CB show"></ul>
 
             <span class="lineLong"> </span>
 
@@ -103,7 +105,7 @@
 
             <span class="lineShort"> </span>
 
-            <div class="l_contentBox bookmark-CB show"></div>
+            <ul class="l_contentBox sortable-bookmark bookmark-CB show"></ul>
 
             <span class="lineLong"> </span>
 

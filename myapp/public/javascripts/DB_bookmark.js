@@ -21,8 +21,8 @@ $(".bookmarkForm").submit((e) => {
       "bookmark-url": url,
     },
     success: () => {
-      cleanBookmark();
-      loadBookmark();
+      displayBookmark((id = 0), url, title);
+
       $("#bookmark-input-title").val("");
       $("#bookmark-input-url").val("");
       $("#bookmark-input-title").focus();
@@ -47,12 +47,11 @@ function loadBookmark() {
   });
 }
 
-function displayBookmark(id, url, title) {
-  const B_contentBox = document.createElement("div");
+function displayBookmark(id = 0, url, title) {
+  const B_contentBox = document.createElement("li");
   const B_hyper = document.createElement("a");
   const B_del = document.createElement("div");
-
-  B_hyper.target = "_black";
+  const IDX_TAG = document.createElement("span");
 
   B_contentBox.classList.add("l_contentBox-contents", "flex");
   B_contentBox.id = id;
@@ -61,11 +60,12 @@ function displayBookmark(id, url, title) {
 
   parentCB.appendChild(B_contentBox);
   B_contentBox.appendChild(B_hyper);
+  B_contentBox.appendChild(IDX_TAG);
   B_contentBox.appendChild(B_del);
 
   B_hyper.href = url;
   B_hyper.innerHTML = title;
-  B_hyper.target = "_self";
+  B_hyper.target = "_blank";
 
   B_del.addEventListener("click", delBookmark);
 }
