@@ -45,7 +45,7 @@ app.use(
 
 // app.use(httpsRedirectMiddle);
 app.use(cookieMiddle);
-app.use(autoLoginMiddle);
+app.use("/", autoLoginMiddle);
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
