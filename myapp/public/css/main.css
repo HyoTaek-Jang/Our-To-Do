@@ -60,6 +60,18 @@
   width: 140px;
 }
 
+.tool-bar-update {
+  line-height: 26px;
+  display: inline;
+  background-color: none;
+  border: 2px white solid;
+  width: 220px;
+  border-radius: 7px;
+  margin: 10px 10px 10px 100px;
+  font-size: 18px;
+  color: white;
+}
+
 .tool-bar p {
   line-height: 26px;
   display: inline;
