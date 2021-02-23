@@ -55,8 +55,8 @@ module.exports = {
     },
     addTodo: async (req, res) => {
       const todo = new Todo(req.session.userId);
-      await todo.setTodo(req.body["todo-input"]);
-      res.json(req.body);
+      const curId = await todo.setTodo(req.body["todo-input"]);
+      res.json(curId);
     },
     patchTodoIdx: async (req, res) => {
       const todo = new Todo(req.body["todoIdx[]"]);
@@ -70,11 +70,11 @@ module.exports = {
     },
     addBookmark: async (req, res) => {
       const bookmark = new Bookmark(req.session.userId);
-      await bookmark.setBookmark(
+      const curId = await bookmark.setBookmark(
         req.body["bookmark-url"],
         req.body["bookmark-title"]
       );
-      res.json("good");
+      res.json(curId);
     },
     patchBookmarkIdx: async (req, res) => {
       const bookmark = new Bookmark(req.body["bookmarkIdx[]"]);

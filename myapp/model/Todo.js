@@ -12,7 +12,10 @@ class Todo {
         [content, this.id],
         (err) => {
           if (err) console.error(err);
-          resolve();
+          db.query("SELECT LAST_INSERT_ID()", (err, data) => {
+            if (err) console.log(err);
+            resolve(data[0]);
+          });
         }
       );
     });

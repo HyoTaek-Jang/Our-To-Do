@@ -20,8 +20,8 @@ $(".bookmarkForm").submit((e) => {
       "bookmark-title": title,
       "bookmark-url": url,
     },
-    success: () => {
-      displayBookmark((id = 0), url, title);
+    success: (result) => {
+      displayBookmark(result["LAST_INSERT_ID()"], url, title);
 
       $("#bookmark-input-title").val("");
       $("#bookmark-input-url").val("");

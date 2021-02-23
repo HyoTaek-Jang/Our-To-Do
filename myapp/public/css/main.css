@@ -108,7 +108,7 @@
 }
 
 .toDo-content {
-  width: 270px;
+  width: 290px;
   height: 45px;
   border: 2px white solid;
   border-radius: 16px;
@@ -441,7 +441,7 @@
   }
 
   .toDo-content {
-    width: 290px;
+    width: 300px;
   }
   .bookmark-content-hyper {
     width: 210px;
@@ -495,5 +495,14 @@
   .l_wrapper {
     width: 33.3%;
     padding-top: 20px;
+  }
+}
+
+@media screen and (max-width: 1530px) {
+  html {
+    width: 1450px;
+  }
+  .main-welcome {
+    padding-top: 100px;
   }
 }

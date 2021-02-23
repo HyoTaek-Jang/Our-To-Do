@@ -12,8 +12,10 @@ class Bookmark {
         [title, url, this.id],
         (err) => {
           if (err) console.log(err);
-
-          resolve("good");
+          db.query("SELECT LAST_INSERT_ID()", (err, data) => {
+            if (err) console.log(err);
+            resolve(data[0]);
+          });
         }
       );
     });

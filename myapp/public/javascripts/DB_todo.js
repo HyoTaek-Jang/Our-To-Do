@@ -10,8 +10,8 @@ $(".todoForm").submit((e) => {
     url: "/main/todo",
     type: "POST",
     data: { "todo-input": $("#todo-input").val() },
-    success: () => {
-      makeBox($("#todo-input").val());
+    success: (result) => {
+      makeBox($("#todo-input").val(), result["LAST_INSERT_ID()"]);
       $("#todo-input").val("");
       $("#todo-input").focus();
     },
