@@ -500,9 +500,16 @@
 
 @media screen and (max-width: 1530px) {
   html {
-    width: 1450px;
+    width: 1400px;
   }
   .main-welcome {
     padding-top: 100px;
+    height: 150px;
+  }
+  .toDo-input {
+    margin-bottom: 0;
+  }
+  .bookmark-form {
+    margin-bottom: 0;
   }
 }
