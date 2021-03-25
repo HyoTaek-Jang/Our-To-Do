@@ -240,7 +240,8 @@
 .W11d {
   background-image: url(/image/weather/W11d.png);
 }
-.W13d {
+.W13d,
+.W13n {
   background-image: url(/image/weather/W13d.png);
 }
 .W50d,
