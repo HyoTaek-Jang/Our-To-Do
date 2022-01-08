@@ -1,0 +1,476 @@
+/* Typography */
+
+body{
+    color: white;
+    text-align: center;
+    font-family:seoulHanB;
+}
+
+@font-face{
+    font-family:seoulHanB;
+    src: url(./font/서울한강\ 장체B.ttf)format('truetype');
+}
+
+@font-face{
+    font-family:seoulHanL;
+    src: url(./font/서울한강\ 장체L.ttf)format('truetype');
+}
+
+
+/* Commoms */
+html{
+    scroll-behavior: smooth;
+    background-color: #999;
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+.flex{
+    display: flex;
+    flex-direction: row;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.toggle{
+
+}
+
+.hidden{
+    display: hidden;
+}
+
+.lineShort{
+    display: block;
+    content: " ";
+    width: 130px;
+    border-bottom: white 2px solid;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+.lineLong{
+    display: block;
+    content: " ";
+    width: 500px;
+    border-bottom: white 2px solid;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+a{
+
+}
+
+/* Layouts */
+.container{
+    /* width: 1920px; */
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.l_wrapper{
+    width: 33.3%;
+}
+
+
+.l_contentBox{
+    height: 600px;
+    overflow: scroll;
+    font-family:seoulHanL;
+    visibility: hidden;
+
+}
+
+.l_contentBox::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+
+
+.l_contentBox-contents{
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Compoments */
+
+.clearAll{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: x-large;
+    color: white;
+    width: 40px;
+    height: 40px;
+    background-image: url(./image/clear_w-07.png);
+    background-position: center;
+    background-size: cover;
+    text-indent: -9999px;
+}
+.clearAll:hover{
+    cursor: pointer;
+}
+
+
+/* To-Do-list start */
+.toDo{
+    background-color: #999;
+    overflow: hidden;
+}
+
+.toDo-header{
+    margin: 0 auto;
+
+}
+
+.toDo-header h2{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.toDo-header h3{
+    font-size: 20px;
+}
+
+
+.toDo-content{
+    width: 270px;
+    height: 45px;
+    border: 2px white solid;
+    border-radius: 16px;
+    margin-right: 10px;
+
+}
+
+.toDo-content p{
+    font-size: 20px;
+    text-align: center;
+    line-height: 45px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 15px;
+}
+
+
+.toDo-del{
+    width: 30px;
+    height: 30px;
+    /* border: solid 2px white;
+    border-radius: 16px; */
+    background-image: url(./image/delete_w.png);
+    background-position: center;
+    background-size: cover;
+    text-indent: -9999px;
+}
+
+.toDo-del:hover{
+    cursor: pointer;
+}
+
+.toDo-input{
+    font-family: seoulHanL;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.toDo-input-value{
+    width: 270px;
+    height: 45px;
+    border: 2px white solid;
+    border-radius: 16px;
+}
+
+.toDo-input-value input{
+    font-size: 20px;
+    text-align: center;
+    line-height: 45px;
+    background-color: #999;
+    margin: 0 15px;
+    color: currentColor;
+    border: none;
+    padding: 0;
+}
+
+.toDo-input-value input::placeholder{
+    color: rgb(218, 218, 218);
+}
+
+.toDo-input-value input:focus{
+    outline: none;
+}
+
+.toDo-input-send{
+    width: 30px;
+    height: 30px;
+    /* border: solid 2px white;
+    border-radius: 16px; */
+    background-image: url(./image/cheak_w.png);
+    background-position: center;
+    background-size: cover;
+    text-indent: -9999px;
+}
+
+/* To-Do-List End */
+
+.main{
+    background-color: #999;
+    overflow: hidden;
+    color: white;
+    font-family: seoulHanB;
+
+}
+
+.main-weather{
+    align-items: center;
+    justify-content: center;
+}
+
+.main-weather-content{
+    margin: 50px 35px 150px 35px;
+
+}
+
+.main-weather-icon{
+    width: 70px;
+    height: 70px;
+    background-position: center;
+    background-size: cover;
+    text-indent: -9999px;
+}
+
+.clouds{
+    background-image: url(./image/cloudy_w.png);
+}
+
+.clear{
+    background-image: url(./image/sunny_w.png);
+}
+
+.thunder{
+    background-image: url(./image/rainy_w.png);
+}
+
+.drizzle{
+    background-image: url(./image/wet_w.png);   
+}
+
+.rain{
+    background-image: url(./image/rainy_w.png);
+}
+
+.snow{
+    background-image: url(./image/snowing_w.png);
+}
+
+.atmosphere{
+    background-image: url(./image/sunny_cloudy_w.png);
+}
+
+
+.main-weather-day{
+    font-size: 23px;
+    margin: 5px auto;
+}
+
+.main-weather-temp{
+    font-size: 17px;
+}
+
+.main-clock{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 170px;
+}
+
+.main-welcome{
+    box-sizing: border-box;
+    padding-top: 150px;
+    height: 320px;
+    font-size: 50px;
+    display: none;
+}
+
+.main-enterName{
+    box-sizing: border-box;
+    padding-top: 120px;
+    height: 320px;
+    display: none;
+}
+
+.main-enterName p{
+    font-size: 60px;
+}
+
+.main-input{
+    padding-top: 30px;
+    width: 250px;
+    height: 70px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 70px;
+    background-color: #999;
+    color: currentColor;
+    border: none;
+    border-bottom: 2px solid white;
+}
+
+.main-input::placeholder{
+    color: rgb(218, 218, 218);
+
+}
+
+.main-input:focus{
+    outline: none;
+}
+
+.bookmark{
+    background-color: #999999;
+}
+
+
+.bookmark-header{
+    margin: 0 auto;
+
+}
+
+.bookmark-header h2{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.bookmark-header h3{
+    font-size: 20px;
+}
+
+
+
+.bookmark-content-hyper{
+    width: 200px;
+    font-size: 20px;
+    margin-right: 10px;
+    padding: 15px 20px;
+    border-bottom: rgb(223, 223, 223) 2px solid;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.bookmark-content-del{
+
+    width: 23px;
+    height: 23px;
+    /* border: solid 2px white;
+    border-radius: 16px; */
+    background-image: url(./image/del2_w.png);
+    background-position: center;
+    background-size: cover;
+    text-indent: -9999px;
+
+}
+
+.bookmark-form{
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
+
+}
+
+.bookmark-input{
+    width: 240px;
+    margin: 0 5px;
+    height: 45px;
+    border: 2px solid white;
+    border-radius: 14px;
+
+}
+
+.bookmark-input input{
+    box-sizing: border-box;
+    width: 220px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    background-color: #999;
+    border: none;
+    padding: 0 15px;
+    font-size: 20px;
+    color: currentColor;
+}
+
+.bookmark-input input:focus{
+    outline: none;
+}
+
+.bookmark-input input::placeholder{
+    color: rgb(218, 218, 218);
+
+}
+
+/* .bookmark-form{
+    margin-top: 30px;
+    justify-content: space-between;
+    width: 500px;
+}
+
+.bookmark-input{
+    width: 135px;
+    height: 45px;
+    border: 2px white solid;
+}
+
+.bookmark-input input{
+    font-size: 20px;
+    text-align: center;
+    line-height: 45px;
+    background-color: #999;
+    margin: 0 15px;
+    color: currentColor;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+
+}
+
+.bookmark-input input:focus{
+    outline: none;
+}
+
+.bookmark-input input::placeholder{
+    color: rgb(218, 218, 218);
+
+} */
+
+
+/* Common */
+.show{
+    display: block;
+    visibility: visible;
+}
+
+/* Mediaqueries */
+@media screen and (max-width: 768px) { 
+    .container-flex-media{
+        flex-direction: column;
+    }
+
+    .l_wrapper{
+        width: 100%;
+    }
+    
+}
