@@ -266,7 +266,7 @@
 
 .main-welcome {
   box-sizing: border-box;
-  padding-top: 150px;
+  padding-top: 0px;
   height: 250px;
   font-size: 45px;
   display: none;
