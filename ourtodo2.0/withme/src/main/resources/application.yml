@@ -16,25 +16,9 @@ spring:
       hibernate:
         format_sql: true
 
-#  sql:
-#    init:
-#      mode: always
-#  mail:
-#    host: smtp.gmail.com
-#    port: 587
-#    username: ajouwithme@gmail.com
-#    password: ENC(vtQWfKf0nw1YGMvjUcLctu9uuUmZYp8fLC1FdbEqOho=)
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-
 logging:
   level:
     org:
       springframework:
         web:
-          filter: DEBUG
-      hibernate.type: trace
+          filter: debug
