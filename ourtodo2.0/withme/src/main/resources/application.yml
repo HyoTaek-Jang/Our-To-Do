@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 1234
+    url: jdbc:mysql://localhost:3306/ourtodo?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+#    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+
+#  sql:
+#    init:
+#      mode: always
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: ajouwithme@gmail.com
+#    password: ENC(vtQWfKf0nw1YGMvjUcLctu9uuUmZYp8fLC1FdbEqOho=)
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          filter: DEBUG
+      hibernate.type: trace
