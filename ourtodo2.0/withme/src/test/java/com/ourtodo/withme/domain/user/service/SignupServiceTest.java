@@ -25,6 +25,35 @@ class SignupServiceTest extends BaseTest {
 
 	@Test
 	@DisplayName("회원가입 Request 유효성 검사 - service logic")
+	void signupServiceValidationTest(){
+		// notnull - @Valid
+		// password, confirm 8자리 이상 - @Valid
+
+		//비밀번호 일치 확인
+		//given
+		String name = "장효택";
+		String email = "hyotaek9812@gmail.com";
+		String password = "a123456";
+		String nonConfirmPassword = "a123457";
+
+		//when, that
+		Assertions.assertThatThrownBy(() -> signupService.signupValid(new SignupRequest(name, email, password, nonConfirmPassword)))
+			.isInstanceOf(ValidationException.class);
+
+		// email 중복체크
+		//given
+		String confirmPassword = "a123456";
+		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
+		//when
+		userRepository.save(signupRequest.toEntity());
+
+		//that
+		Assertions.assertThatThrownBy(() -> signupService.signupValid(signupRequest))
+			.isInstanceOf(ValidationException.class);
+	}
+
+	@Test
+	@DisplayName("회원가입 Request 유효성 검사 - @Valid logic")
 	void signupValidationTest(){
 		// notnull - @Valid
 		// password, confirm 8자리 이상 - @Valid
