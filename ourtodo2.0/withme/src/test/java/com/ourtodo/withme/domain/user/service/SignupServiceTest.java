@@ -8,15 +8,19 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ourtodo.withme.BaseTest;
+import com.ourtodo.withme.domain.user.db.repository.UserRepository;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
 
 class SignupServiceTest extends BaseTest {
 
 	private final SignupService signupService;
+	private final UserRepository userRepository;
 
 	@Autowired
-	public SignupServiceTest(SignupService signupService) {
+	public SignupServiceTest(SignupService signupService,
+		UserRepository userRepository) {
 		this.signupService = signupService;
+		this.userRepository = userRepository;
 	}
 
 	@Test
@@ -30,18 +34,20 @@ class SignupServiceTest extends BaseTest {
 		String name = "장효택";
 		String email = "hyotaek9812@gmail.com";
 		String password = "a123456";
-		String confirmPassword = "a123457";
-		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
+		String nonConfirmPassword = "a123457";
 
 		//when, that
-		Assertions.assertThatThrownBy(() -> signupService.signupValid(signupRequest))
+		Assertions.assertThatThrownBy(() -> signupService.signupValid(new SignupRequest(name, email, password, nonConfirmPassword)))
 			.isInstanceOf(ValidationException.class);
 
 		// email 중복체크
 		//given
-		confirmPassword = "a123456";
+		String confirmPassword = "a123456";
+		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
+		//when
+		userRepository.save(signupRequest.toEntity());
 
-		//when, that
+		//that
 		Assertions.assertThatThrownBy(() -> signupService.signupValid(signupRequest))
 			.isInstanceOf(ValidationException.class);
 	}

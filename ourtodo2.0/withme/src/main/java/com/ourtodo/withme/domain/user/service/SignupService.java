@@ -18,8 +18,10 @@ public class SignupService {
 	private final UserRepository userRepository;
 
 	public void signupValid(SignupRequest signupRequest) throws ValidationException {
-		// email 중복체크 - service
 		if (!signupRequest.getPassword().equals(signupRequest.getConfirmPassword()))
 			throw new ValidationException(notSamePassword, "400");
+
+		if (userRepository.findByEmail(signupRequest.getEmail()) != null)
+			throw new ValidationException(existEmail, "409");
 	}
 }

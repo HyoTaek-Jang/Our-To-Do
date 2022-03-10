@@ -22,3 +22,15 @@ logging:
       springframework:
         web:
           filter: debug
+
+---
+
+spring:
+  profiles:
+    active: test
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 1234
+    url: jdbc:mysql://localhost:3306/ourtodotest?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
