@@ -1,6 +1,6 @@
 package com.ourtodo.withme.domain.user.service;
 
-import static com.ourtodo.withme.global.constants.ValidationConstants.*;
+import static com.ourtodo.withme.domain.user.constants.SignupValidationConstants.*;
 
 import javax.xml.bind.ValidationException;
 
