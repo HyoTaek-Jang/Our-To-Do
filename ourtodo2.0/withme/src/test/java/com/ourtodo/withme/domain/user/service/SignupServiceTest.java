@@ -33,14 +33,11 @@ class SignupServiceTest extends BaseTest {
 	@Test
 	@DisplayName("회원가입 Request 유효성 검사 - service logic")
 	void signupServiceValidationTest(){
-		// notnull - @Valid
-		// password, confirm 8자리 이상 - @Valid
-
 		//비밀번호 일치 확인
 		//given
 		String name = "장효택";
 		String email = "hyotaek9812@gmail.com";
-		String password = "a123456";
+		String password = "a1234567";
 		String nonConfirmPassword = "a123457";
 
 		//when, that
@@ -49,7 +46,7 @@ class SignupServiceTest extends BaseTest {
 
 		// email 중복체크
 		//given
-		String confirmPassword = "a123456";
+		String confirmPassword = "a1234567";
 		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
 		//when
 		userRepository.save(signupRequest.toEntity());
@@ -57,36 +54,5 @@ class SignupServiceTest extends BaseTest {
 		//that
 		Assertions.assertThatThrownBy(() -> signupService.signupValid(signupRequest))
 			.isInstanceOf(ValidationException.class);
-	}
-
-	@Test
-	@DisplayName("회원가입 Request 유효성 검사 - @Valid logic")
-	void signupValidationTest() throws Exception {
-
-		//email 형식 검사
-		//given
-		String name = "장효택";
-		String email = "hyotaek9812@gmail.com";
-		String password = "a123456";
-		SignupRequest signupRequest = new SignupRequest(name, email, password, password);
-
-		//when
-		ResultActions perform = this.mockMvc.perform(post("/auth/signup").contentType(MediaType.APPLICATION_JSON)
-			.content(this.objectMapper.writeValueAsString(signupRequest)));
-
-		//then
-		perform.andExpect(status().is4xxClientError()).andExpect(jsonPath("message", String.class).value(notMatchEmail));
-
-		//password 자릿수 검사
-		//given
-		password = "a12345";
-		signupRequest = new SignupRequest(name, email, password, password);
-
-		//when
-		perform = this.mockMvc.perform(post("/auth/signup").contentType(MediaType.APPLICATION_JSON)
-			.content(this.objectMapper.writeValueAsString(signupRequest)));
-
-		//then
-		perform.andExpect(status().is4xxClientError()).andExpect(jsonPath("message", String.class).value(lessThanMinLength));
 	}
 }
