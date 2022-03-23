@@ -3,14 +3,13 @@ package com.ourtodo.withme.global.exception.handler;
 import java.util.Arrays;
 import java.util.Objects;
 
-import javax.xml.bind.ValidationException;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.ourtodo.withme.global.dto.BaseResponse;
+import com.ourtodo.withme.global.exception.custom.ValidationException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,7 +25,7 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(value = ValidationException.class)
 	private ResponseEntity<BaseResponse> handleValidationException(ValidationException e) {
-		return ResponseEntity.status(Integer.parseInt(e.getErrorCode())).body(new BaseResponse(e.getMessage()));
+		return ResponseEntity.status(e.getCode()).body(new BaseResponse(e.getMessage()));
 	}
 
 	@ExceptionHandler(value = Exception.class)
