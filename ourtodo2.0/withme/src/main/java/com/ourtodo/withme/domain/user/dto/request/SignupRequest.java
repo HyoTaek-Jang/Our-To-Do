@@ -32,7 +32,7 @@ public class SignupRequest {
 	@NotNull(message = IS_NULL)
 	private String confirmPassword;
 
-	public User toEntity() {
-		return new User(this.name, this.email, this.password);
+	public User toEntity(String encryptedPassword) {
+		return new User(this.name, this.email, encryptedPassword);
 	}
 }

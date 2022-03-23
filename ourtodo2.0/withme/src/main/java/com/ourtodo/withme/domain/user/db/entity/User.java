@@ -10,11 +10,13 @@ import javax.validation.constraints.Size;
 import com.ourtodo.withme.global.entity.BaseEntity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class User extends BaseEntity {
 	@NotNull
 	private String name;
