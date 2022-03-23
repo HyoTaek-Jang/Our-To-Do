@@ -33,6 +33,6 @@ public class SignupRequest {
 	private String confirmPassword;
 
 	public User toEntity() {
-		return new User(null, this.name, this.email, this.password);
+		return new User(this.name, this.email, this.password);
 	}
 }
