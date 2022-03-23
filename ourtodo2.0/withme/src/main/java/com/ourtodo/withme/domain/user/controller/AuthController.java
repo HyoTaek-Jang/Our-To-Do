@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ourtodo.withme.domain.user.dto.request.SendCertificationMailRequest;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
+import com.ourtodo.withme.domain.user.dto.request.VerifyCertificationMailRequest;
 import com.ourtodo.withme.domain.user.service.MailCertificationService;
 import com.ourtodo.withme.domain.user.service.SignupService;
 import com.ourtodo.withme.global.dto.BaseResponse;
@@ -29,8 +30,8 @@ public class AuthController {
 	private final MailService mailService;
 
 	@PostMapping("/signup")
-	public ResponseEntity<? extends BaseResponse> signupUser(@Valid @RequestBody SignupRequest signupRequest) throws
-		ValidationException {
+	public ResponseEntity<? extends BaseResponse> signupUser(@Valid @RequestBody SignupRequest signupRequest){
+		// ToDo 어떻게 인증유저를 확인할 것인지.. 인증코드를 받을까?
 		signupService.signupValid(signupRequest);
 		return null;
 	}
@@ -41,6 +42,15 @@ public class AuthController {
 		MessagingException {
 		String code = certificationService.saveMailCertification(sendCertificationMailRequest.getEmail());
 		mailService.sendSignUpCertificationMail(sendCertificationMailRequest.getEmail(), code);
-		return null;
+		return ResponseEntity.status(201).body(new BaseResponse("인증코드 이메일 발송을 완료했습니다."));
+	}
+
+	@PostMapping("/certification/verification/signup")
+	public ResponseEntity<? extends BaseResponse> verifySignupCertificationMail(@Valid @RequestBody VerifyCertificationMailRequest verifyCertificationMailRequest){
+		boolean result = certificationService.verifyCertification(verifyCertificationMailRequest.getEmail(),
+			verifyCertificationMailRequest.getCode());
+		if (result)
+			return ResponseEntity.status(201).body(new BaseResponse("인증을 성공했습니다."));
+		return ResponseEntity.status(409).body(new BaseResponse("인증번호가 잘못 됐습니다."));
 	}
 }

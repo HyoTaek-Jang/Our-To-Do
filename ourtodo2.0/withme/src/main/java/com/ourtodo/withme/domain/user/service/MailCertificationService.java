@@ -2,6 +2,7 @@ package com.ourtodo.withme.domain.user.service;
 
 import static com.ourtodo.withme.domain.user.constants.MailCertificationConstants.*;
 
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ourtodo.withme.domain.user.db.domain.MailCertification;
 import com.ourtodo.withme.domain.user.db.repository.MailCertificationRepository;
+import com.ourtodo.withme.global.exception.custom.ValidationException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,5 +32,13 @@ public class MailCertificationService {
 	public String createRandomCode(int length) {
 		int start = (int) (Math.random() * 27);
 		return UUID.randomUUID().toString().replace("-", "").substring(start, start + length);
+	}
+
+	public boolean verifyCertification(String email, String code) {
+		MailCertification mailCertification = mailCertificationRepository.findByEmail(email)
+			.orElseThrow(() -> new ValidationException(IS_NOT_EXIST_EMAIL, 409));
+		if (mailCertification.getExpiredTime().before(new Date(System.currentTimeMillis())))
+			throw new ValidationException(AFTER_EXPIRED_TIME, 409);
+		return passwordEncoder.matches(code, mailCertification.getCode());
 	}
 }

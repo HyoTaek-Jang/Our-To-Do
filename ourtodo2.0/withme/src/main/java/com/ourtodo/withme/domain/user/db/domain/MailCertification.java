@@ -15,7 +15,10 @@ import javax.validation.constraints.NotNull;
 
 import com.ourtodo.withme.global.entity.BaseEntity;
 
+import lombok.Getter;
+
 @Entity
+@Getter
 public class MailCertification extends BaseEntity {
 	@NotNull(message = IS_NULL)
 	private String code;
