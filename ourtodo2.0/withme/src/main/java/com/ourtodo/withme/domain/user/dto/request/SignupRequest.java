@@ -4,11 +4,10 @@ import static com.ourtodo.withme.domain.user.constants.SignupValidationConstants
 import static com.ourtodo.withme.global.constants.CommonValidationConstants.*;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.ourtodo.withme.domain.user.db.entity.User;
+import com.ourtodo.withme.domain.user.db.domain.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

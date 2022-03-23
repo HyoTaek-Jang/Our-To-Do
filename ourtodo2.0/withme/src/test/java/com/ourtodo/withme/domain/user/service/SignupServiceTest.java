@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.ourtodo.withme.BaseTest;
-import com.ourtodo.withme.domain.user.db.entity.User;
+import com.ourtodo.withme.domain.user.db.domain.User;
 import com.ourtodo.withme.domain.user.db.repository.UserRepository;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
 

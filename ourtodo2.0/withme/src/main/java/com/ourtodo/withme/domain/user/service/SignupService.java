@@ -7,7 +7,7 @@ import javax.xml.bind.ValidationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ourtodo.withme.domain.user.db.entity.User;
+import com.ourtodo.withme.domain.user.db.domain.User;
 import com.ourtodo.withme.domain.user.db.repository.UserRepository;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
 
