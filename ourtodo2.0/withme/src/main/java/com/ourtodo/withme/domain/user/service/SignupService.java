@@ -6,7 +6,6 @@ import javax.xml.bind.ValidationException;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.ourtodo.withme.domain.user.db.entity.User;
 import com.ourtodo.withme.domain.user.db.repository.UserRepository;
@@ -15,7 +14,6 @@ import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class SignupService {
 
