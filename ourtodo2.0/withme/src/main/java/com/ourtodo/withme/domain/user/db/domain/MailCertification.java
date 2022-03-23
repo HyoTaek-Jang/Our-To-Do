@@ -2,6 +2,7 @@ package com.ourtodo.withme.domain.user.db.domain;
 
 import static com.ourtodo.withme.domain.user.constants.MailCertificationConstants.*;
 import static com.ourtodo.withme.domain.user.constants.SignupValidationConstants.*;
+import static com.ourtodo.withme.global.constants.CommonValidationConstants.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -16,14 +17,14 @@ import com.ourtodo.withme.global.entity.BaseEntity;
 
 @Entity
 public class MailCertification extends BaseEntity {
-	@NotNull
+	@NotNull(message = IS_NULL)
 	private String code;
 
-	@NotNull
+	@NotNull(message = IS_NULL)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date expiredTime;
 
-	@NotNull
+	@NotNull(message = IS_NULL)
 	@Email(message = NOT_MATCH_EMAIL)
 	private String email;
 
