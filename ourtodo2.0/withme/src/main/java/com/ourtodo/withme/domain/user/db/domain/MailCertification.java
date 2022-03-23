@@ -27,7 +27,7 @@ public class MailCertification extends BaseEntity {
 	@Email(message = NOT_MATCH_EMAIL)
 	private String email;
 
-	void updateCertification(String code, String email) {
+	public void updateCertification(String code, String email) {
 		this.code = code;
 		this.email = email;
 		this.expiredTime = new Timestamp(System.currentTimeMillis() + MAIL_EXPIRED_TIME);
