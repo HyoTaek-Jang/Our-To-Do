@@ -15,17 +15,17 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    mail:
-      host: smtp.gmail.com
-      port: 587
-      username: ajouwithme@gmail.com
-      password: ENC(vtQWfKf0nw1YGMvjUcLctu9uuUmZYp8fLC1FdbEqOho=)
-      properties:
-        mail:
-          smtp:
-            auth: true
-            starttls:
-              enable: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ajouwithme@gmail.com
+    password: ENC(RRlBDoldIbjSY9+VlM6yvO5vOYsmYmLWSXEeqCity/c=)
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 logging:
   level:
@@ -33,6 +33,10 @@ logging:
       springframework:
         web:
           filter: debug
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
 
 ---
 
