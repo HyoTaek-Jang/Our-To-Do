@@ -33,6 +33,10 @@ public class SignupRequest {
 	private String confirmPassword;
 
 	public User toEntity(String encryptedPassword) {
-		return new User(this.name, this.email, encryptedPassword);
+		return User.builder()
+			.email(this.email)
+			.name(this.name)
+			.password(encryptedPassword)
+			.build();
 	}
 }

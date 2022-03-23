@@ -41,8 +41,10 @@ jasypt:
 ---
 
 spring:
-  profiles:
-    active: test
+  config:
+    activate:
+      on-profile: test
+
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
