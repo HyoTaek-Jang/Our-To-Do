@@ -1,7 +1,5 @@
 package com.ourtodo.withme.domain.user.service;
 
-import javax.xml.bind.ValidationException;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +10,7 @@ import com.ourtodo.withme.BaseTest;
 import com.ourtodo.withme.domain.user.db.domain.User;
 import com.ourtodo.withme.domain.user.db.repository.UserRepository;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
+import com.ourtodo.withme.global.exception.custom.ValidationException;
 
 class SignupServiceTest extends BaseTest {
 
