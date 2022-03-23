@@ -16,7 +16,7 @@ import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
 
 class AuthControllerTest extends BaseTest {
 	@Test
-	@DisplayName("회원가입 Request 유효성 검사 - @Valid logic")
+	@DisplayName("회원가입 Request 유효성 검사 - @Valid 로직")
 	void signupValidationTest() throws Exception {
 
 		//email 형식 검사
