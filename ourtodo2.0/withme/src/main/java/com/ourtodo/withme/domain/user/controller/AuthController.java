@@ -1,5 +1,7 @@
 package com.ourtodo.withme.domain.user.controller;
 
+import static com.ourtodo.withme.domain.user.constants.AuthControllerConstants.*;
+
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import javax.xml.bind.ValidationException;
@@ -34,7 +36,7 @@ public class AuthController {
 		// ToDo 어떻게 인증유저를 확인할 것인지.. 인증코드를 받을까? 아니면 토큰?
 		signupService.signupValid(signupRequest);
 		signupService.saveUser(signupRequest);
-		return ResponseEntity.status(201).body(new BaseResponse("회원가입을 완료했습니다."));
+		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_SIGNUP));
 	}
 
 
@@ -43,7 +45,7 @@ public class AuthController {
 		MessagingException {
 		String code = certificationService.saveMailCertification(sendCertificationMailRequest.getEmail());
 		mailService.sendSignUpCertificationMail(sendCertificationMailRequest.getEmail(), code);
-		return ResponseEntity.status(201).body(new BaseResponse("인증코드 이메일 발송을 완료했습니다."));
+		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_SEND_MAIL));
 	}
 
 	@PostMapping("/certification/verification/signup")
@@ -51,7 +53,7 @@ public class AuthController {
 		boolean result = certificationService.verifyCertification(verifyCertificationMailRequest.getEmail(),
 			verifyCertificationMailRequest.getCode());
 		if (result)
-			return ResponseEntity.status(201).body(new BaseResponse("인증을 성공했습니다."));
-		return ResponseEntity.status(409).body(new BaseResponse("인증번호가 잘못 됐습니다."));
+			return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_VERIFY));
+		return ResponseEntity.status(409).body(new BaseResponse(FAIL_VERIFY));
 	}
 }
