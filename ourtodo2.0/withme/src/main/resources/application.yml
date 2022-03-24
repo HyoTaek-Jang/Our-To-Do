@@ -15,6 +15,17 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ajouwithme@gmail.com
+    password: ENC(RRlBDoldIbjSY9+VlM6yvO5vOYsmYmLWSXEeqCity/c=)
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 logging:
   level:
@@ -22,3 +33,21 @@ logging:
       springframework:
         web:
           filter: debug
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 1234
+    url: jdbc:mysql://localhost:3306/ourtodotest?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
