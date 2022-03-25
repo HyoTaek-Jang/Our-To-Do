@@ -1,0 +1,105 @@
+/* Typography */
+
+body {
+  color: white;
+  text-align: center;
+  font-family: seoulHanB;
+}
+
+@font-face {
+  font-family: seoulHanB;
+  src: url(/font/fontB.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: seoulHanL;
+  src: url(/font/fontL.ttf) format("truetype");
+}
+
+/* Commoms */
+html {
+  scroll-behavior: smooth;
+  background-color: #999;
+  width: 1500px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.toggle:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: hidden;
+}
+
+.lineShort {
+  display: block;
+  content: " ";
+  width: 130px;
+  border-bottom: white 2px solid;
+  margin: 0 auto;
+  padding-top: 15px;
+}
+
+.lineLong {
+  display: block;
+  content: " ";
+  width: 420px;
+  border-bottom: white 2px solid;
+  margin: 0 auto;
+  padding-top: 15px;
+}
+
+/* Layouts */
+.container {
+  /* width: 1920px; */
+  /* height: 100%; */
+  justify-content: center;
+  align-items: center;
+  /* margin: auto; */
+}
+
+.l_wrapper {
+  width: 33.3%;
+  /* padding-top: 20px; */
+  /* height: 100%; */
+  /* margin-top: 20px; */
+}
+
+.l_contentBox {
+  /* min-height: 420px;
+  max-height: 420px; */
+  height: 420px;
+  overflow: scroll;
+  font-family: seoulHanL;
+  visibility: hidden;
+}
+
+.l_contentBox::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.l_contentBox-contents {
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
