@@ -11,7 +11,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
-#    defer-datasource-initialization: true
+    #    defer-datasource-initialization: true
     properties:
       hibernate:
         format_sql: true
@@ -45,9 +45,10 @@ spring:
     activate:
       on-profile: test
 
-
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 1234
-    url: jdbc:mysql://localhost:3306/ourtodotest?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
-    username: root
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:../test
