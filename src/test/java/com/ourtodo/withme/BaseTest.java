@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @Transactional
 @AutoConfigureMockMvc
-// @ActiveProfiles("test")
+@ActiveProfiles("test")
 public class BaseTest {
 	@Autowired
 	protected MockMvc mockMvc;
