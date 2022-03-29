@@ -30,7 +30,7 @@ jobs:
       run: chmod +x gradlew
       
     - name: Build with Gradle
-      run: ./gradlew build -Pjasypt.encryptor.password=${{ secrets.JASYPT_PWD }}
+      run: ./gradlew build -Pjasypt.encryptor.password=${{ secrets.JASYPT_PWD }} -Dspring.profiles.active=test
     
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1
