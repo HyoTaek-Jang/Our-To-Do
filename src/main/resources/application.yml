@@ -43,6 +43,20 @@ jasypt:
 spring:
   config:
     activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ENC(NazvhBuFCGW8ylrO34P8cF96IvuGWvVZ)
+    url: ENC(JXorvZHxqfox+2d7g9vQaLhoiS6I7JSOlqNDLCzlpQbfjHKPmKd+KUQOQqlAjQ0wcABMGjXX+YiZ3Vu5w9VrVjBozke67kFyc61UnhCd9zH2EEevOVGp/iuyEJZKcoK+LhKw3AEmKWqSZLeI+7bZqQ1qTap1UeJa29Ka6sd/Z9OKXtpGuTftgFsnvLFLJg+g)
+    username: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+---
+
+spring:
+  config:
+    activate:
       on-profile: test
 
   jpa:
