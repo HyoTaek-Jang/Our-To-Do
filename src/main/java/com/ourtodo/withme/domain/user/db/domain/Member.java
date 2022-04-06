@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class User extends BaseEntity {
+public class Member extends BaseEntity {
 	@NotNull
 	private String name;
 

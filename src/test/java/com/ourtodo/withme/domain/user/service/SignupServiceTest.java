@@ -7,22 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.ourtodo.withme.BaseTest;
-import com.ourtodo.withme.domain.user.db.domain.User;
-import com.ourtodo.withme.domain.user.db.repository.UserRepository;
+import com.ourtodo.withme.domain.user.db.domain.Member;
+import com.ourtodo.withme.domain.user.db.repository.MemberRepository;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
 import com.ourtodo.withme.global.exception.custom.ValidationException;
 
 class SignupServiceTest extends BaseTest {
 
 	private final SignupService signupService;
-	private final UserRepository userRepository;
+	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
 	public SignupServiceTest(SignupService signupService,
-		UserRepository userRepository, PasswordEncoder passwordEncoder) {
+		MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
 		this.signupService = signupService;
-		this.userRepository = userRepository;
+		this.memberRepository = memberRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -45,7 +45,7 @@ class SignupServiceTest extends BaseTest {
 		String confirmPassword = "a1234567";
 		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
 		//when
-		userRepository.save(signupRequest.toEntity(confirmPassword));
+		memberRepository.save(signupRequest.toEntity(confirmPassword));
 
 		//that
 		Assertions.assertThatThrownBy(() -> signupService.signupValid(signupRequest))
@@ -63,9 +63,9 @@ class SignupServiceTest extends BaseTest {
 		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
 
 		//when
-		User user = signupService.saveUser(signupRequest);
+		Member member = signupService.saveUser(signupRequest);
 
 		//that
-		Assertions.assertThat(passwordEncoder.matches(password, user.getPassword())).isTrue();
+		Assertions.assertThat(passwordEncoder.matches(password, member.getPassword())).isTrue();
 	}
 }
