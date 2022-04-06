@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ourtodo.withme.domain.user.dto.request.LoginRequest;
 import com.ourtodo.withme.domain.user.dto.request.SendCertificationMailRequest;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
 import com.ourtodo.withme.domain.user.dto.request.VerifyCertificationMailRequest;
@@ -55,5 +56,10 @@ public class AuthController {
 		if (result)
 			return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_VERIFY));
 		return ResponseEntity.status(409).body(new BaseResponse(FAIL_VERIFY));
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<? extends BaseResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
+		return null;
 	}
 }
