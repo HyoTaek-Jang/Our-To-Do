@@ -16,6 +16,7 @@ import com.ourtodo.withme.domain.user.dto.request.LoginRequest;
 import com.ourtodo.withme.domain.user.dto.request.SendCertificationMailRequest;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
 import com.ourtodo.withme.domain.user.dto.request.VerifyCertificationMailRequest;
+import com.ourtodo.withme.domain.user.service.AuthService;
 import com.ourtodo.withme.domain.user.service.MailCertificationService;
 import com.ourtodo.withme.domain.user.service.SignupService;
 import com.ourtodo.withme.global.dto.BaseResponse;
@@ -31,6 +32,7 @@ public class AuthController {
 	private final SignupService signupService;
 	private final MailCertificationService certificationService;
 	private final MailService mailService;
+	private final AuthService authService;
 
 	@PostMapping("/signup")
 	public ResponseEntity<? extends BaseResponse> signupUser(@Valid @RequestBody SignupRequest signupRequest){

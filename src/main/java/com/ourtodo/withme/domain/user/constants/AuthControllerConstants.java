@@ -6,4 +6,5 @@ public class AuthControllerConstants {
 	public static final String SUCCESS_VERIFY = "인증을 성공했습니다.";
 	public static final String FAIL_VERIFY = "인증을 실패했습니다.";
 
+	public static final String NOT_MATCH_PASSWORD = "비밀번호가 일치하지 않습니다.";
 }
