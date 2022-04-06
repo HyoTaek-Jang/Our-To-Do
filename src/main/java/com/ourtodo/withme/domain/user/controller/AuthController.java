@@ -36,7 +36,6 @@ public class AuthController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<? extends BaseResponse> signupUser(@Valid @RequestBody SignupRequest signupRequest){
-		// ToDo 어떻게 인증유저를 확인할 것인지.. 인증코드를 받을까? 아니면 토큰?
 		signupService.signupValid(signupRequest);
 		signupService.saveUser(signupRequest);
 		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_SIGNUP));
@@ -62,6 +61,7 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public ResponseEntity<? extends BaseResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
+		authService.login(loginRequest.getEmail(),loginRequest.getPassword());
 		return null;
 	}
 }

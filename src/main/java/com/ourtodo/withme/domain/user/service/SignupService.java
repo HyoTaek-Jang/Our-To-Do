@@ -23,7 +23,7 @@ public class SignupService {
 		if (!signupRequest.getPassword().equals(signupRequest.getConfirmPassword()))
 			throw new ValidationException(NOT_SAME_PASSWORD, 400);
 
-		if (userRepository.findByEmail(signupRequest.getEmail()) != null)
+		if (userRepository.findByEmail(signupRequest.getEmail()).isPresent())
 			throw new ValidationException(IS_EXIST_EMAIL, 409);
 	}
 
