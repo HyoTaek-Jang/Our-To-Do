@@ -4,6 +4,7 @@ import static com.ourtodo.withme.domain.user.constants.SignupValidationConstants
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ourtodo.withme.domain.user.db.domain.Member;
 import com.ourtodo.withme.domain.user.db.repository.MemberRepository;
@@ -19,6 +20,7 @@ public class SignupService {
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 
+	@Transactional(readOnly = true)
 	public void signupValid(SignupRequest signupRequest) {
 		if (!signupRequest.getPassword().equals(signupRequest.getConfirmPassword()))
 			throw new ValidationException(NOT_SAME_PASSWORD, 400);
@@ -27,6 +29,7 @@ public class SignupService {
 			throw new ValidationException(IS_EXIST_EMAIL, 409);
 	}
 
+	@Transactional
 	public Member saveUser(SignupRequest signupRequest) {
 		Member member = signupRequest.toEntity(passwordEncoder.encode(signupRequest.getPassword()));
 		return memberRepository.save(member);

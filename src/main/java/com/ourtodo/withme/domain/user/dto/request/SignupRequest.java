@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.ourtodo.withme.domain.user.db.domain.Authority;
 import com.ourtodo.withme.domain.user.db.domain.Member;
 
 import lombok.AllArgsConstructor;
@@ -36,6 +37,7 @@ public class SignupRequest {
 			.email(this.email)
 			.name(this.name)
 			.password(encryptedPassword)
+			.authority(Authority.ROLE_USER)
 			.build();
 	}
 }

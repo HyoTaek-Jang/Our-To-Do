@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ourtodo.withme.domain.user.db.domain.MailCertification;
 import com.ourtodo.withme.domain.user.db.repository.MailCertificationRepository;
@@ -21,6 +22,7 @@ public class MailCertificationService {
 	private final PasswordEncoder passwordEncoder;
 	private final MailCertificationRepository mailCertificationRepository;
 
+	@Transactional
 	public String saveMailCertification(String email) {
 		MailCertification mailCertification = mailCertificationRepository.findByEmail(email).orElse(new MailCertification());
 		String randomCode = createRandomCode(CODE_LENGTH);
@@ -34,6 +36,7 @@ public class MailCertificationService {
 		return UUID.randomUUID().toString().replace("-", "").substring(start, start + length);
 	}
 
+	@Transactional(readOnly = true)
 	public boolean verifyCertification(String email, String code) {
 		MailCertification mailCertification = mailCertificationRepository.findByEmail(email)
 			.orElseThrow(() -> new ValidationException(IS_NOT_EXIST_EMAIL, 409));
