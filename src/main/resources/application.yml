@@ -38,6 +38,9 @@ jasypt:
   encryptor:
     bean: jasyptStringEncryptor
 
+jwt:
+  secret: ENC(gH1PUn4gwbDXNrDDIl4FBnT9w8Y2tY+2986SYFBeIEMzXYpP6ZGb+c4WVIkVALTpaKmvkgBOe/1LhwCDWs5wVj3eDts1flOEsKMgwcQcMd39qTHxIyclxBRD8Ut/TgIBizFmLByKcVPbSmegWsS++V4VbMApzDqPrNbN4wXXZqZO+tJaeylQAMoXXTVPujNr)
+
 ---
 
 spring:
