@@ -29,12 +29,6 @@ public class AuthService {
 
 	@Transactional(readOnly = true)
 	public TokenDto login(String email, String password) {
-		Member byEmail = memberRepository.findByEmail(email)
-			.orElseThrow(() -> new ValidationException(IS_NOT_EXIST_EMAIL, 409));
-		if (!passwordEncoder.matches(password, byEmail.getPassword())) {
-			throw new ValidationException(NOT_MATCH_PASSWORD, 409);
-		}
-
 		// 1. Login ID/PW 를 기반으로 AuthenticationToken 생성
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
 

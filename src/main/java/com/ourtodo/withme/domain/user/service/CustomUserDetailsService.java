@@ -1,5 +1,7 @@
 package com.ourtodo.withme.domain.user.service;
 
+import static com.ourtodo.withme.domain.user.constants.MailCertificationConstants.*;
+
 import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -27,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return memberRepository.findByEmail(username)
 			.map(this::createUserDetails)
-			.orElseThrow(() -> new ValidationException(username + " -> 데이터베이스에서 찾을 수 없습니다.", 409));
+			.orElseThrow(() -> new ValidationException(IS_NOT_EXIST_EMAIL, 409));
 	}
 
 	// DB 에 User 값이 존재한다면 UserDetails 객체로 만들어서 리턴
