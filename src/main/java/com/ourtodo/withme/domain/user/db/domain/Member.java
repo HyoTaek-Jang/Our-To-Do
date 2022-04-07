@@ -3,11 +3,17 @@ package com.ourtodo.withme.domain.user.db.domain;
 import static com.ourtodo.withme.domain.user.constants.SignupValidationConstants.*;
 import static com.ourtodo.withme.global.constants.CommonValidationConstants.*;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.ourtodo.withme.global.entity.BaseEntity;
 

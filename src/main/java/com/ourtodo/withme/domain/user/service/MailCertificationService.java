@@ -24,7 +24,7 @@ public class MailCertificationService {
 
 	@Transactional
 	public String saveMailCertification(String email) {
-		MailCertification mailCertification = mailCertificationRepository.findByEmail(email).orElse(new MailCertification());
+			MailCertification mailCertification = mailCertificationRepository.findByEmail(email).orElse(new MailCertification());
 		String randomCode = createRandomCode(CODE_LENGTH);
 		mailCertification.updateCertification(passwordEncoder.encode(randomCode), email);
 		mailCertificationRepository.save(mailCertification);
@@ -40,7 +40,7 @@ public class MailCertificationService {
 	public boolean verifyCertification(String email, String code) {
 		MailCertification mailCertification = mailCertificationRepository.findByEmail(email)
 			.orElseThrow(() -> new ValidationException(IS_NOT_EXIST_EMAIL, 409));
-		if (mailCertification.getExpiredTime().before(new Date(System.currentTimeMillis())))
+		if (mailCertification.getCreatedAt().before(new Date(System.currentTimeMillis())))
 			throw new ValidationException(AFTER_EXPIRED_TIME, 409);
 		return passwordEncoder.matches(code, mailCertification.getCode());
 	}
