@@ -39,7 +39,7 @@ jasypt:
     bean: jasyptStringEncryptor
 
 jwt:
-  secret: ENC(gH1PUn4gwbDXNrDDIl4FBnT9w8Y2tY+2986SYFBeIEMzXYpP6ZGb+c4WVIkVALTpaKmvkgBOe/1LhwCDWs5wVj3eDts1flOEsKMgwcQcMd39qTHxIyclxBRD8Ut/TgIBizFmLByKcVPbSmegWsS++V4VbMApzDqPrNbN4wXXZqZO+tJaeylQAMoXXTVPujNr)
+  secret: ENC(wXcIGSwzpWy0u/2CkJ7F7LQxKA4YPD42GI7kidEdzzQ9+wGnGPdQ4JzKjzewuICM8fFkAVk/ybEhN0RGSVxqxjcFWJfYtA8nSacTcbmaKkU=)
 
 ---
 
