@@ -20,6 +20,7 @@ import com.ourtodo.withme.domain.user.service.AuthService;
 import com.ourtodo.withme.domain.user.service.MailCertificationService;
 import com.ourtodo.withme.domain.user.service.SignupService;
 import com.ourtodo.withme.global.dto.BaseResponse;
+import com.ourtodo.withme.global.security.token.TokenDto;
 import com.ourtodo.withme.global.util.mail.MailService;
 
 import lombok.RequiredArgsConstructor;
@@ -61,7 +62,7 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public ResponseEntity<? extends BaseResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
-		authService.login(loginRequest.getEmail(),loginRequest.getPassword());
+		TokenDto login = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
 		return null;
 	}
 }

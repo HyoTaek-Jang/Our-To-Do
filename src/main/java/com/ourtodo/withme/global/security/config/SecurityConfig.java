@@ -4,15 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.ourtodo.withme.global.security.JwtAccessDeniedHandler;
-import com.ourtodo.withme.global.security.JwtAuthenticationEntryPoint;
+import com.ourtodo.withme.global.security.exception.JwtAccessDeniedHandler;
+import com.ourtodo.withme.global.security.exception.JwtAuthenticationEntryPoint;
 import com.ourtodo.withme.global.security.token.TokenProvider;
 
 @Configuration

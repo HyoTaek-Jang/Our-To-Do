@@ -1,4 +1,4 @@
-package com.ourtodo.withme.global.security;
+package com.ourtodo.withme.global.security.exception;
 
 import java.io.IOException;
 
