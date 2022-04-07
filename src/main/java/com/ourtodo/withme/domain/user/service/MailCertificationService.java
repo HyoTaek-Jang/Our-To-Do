@@ -40,7 +40,7 @@ public class MailCertificationService {
 	public boolean verifyCertification(String email, String code) {
 		MailCertification mailCertification = mailCertificationRepository.findByEmail(email)
 			.orElseThrow(() -> new ValidationException(IS_NOT_EXIST_EMAIL, 409));
-		if (mailCertification.getCreatedAt().before(new Date(System.currentTimeMillis() + MAIL_EXPIRED_TIME)))
+		if (!mailCertification.getCreatedAt().before(new Date(System.currentTimeMillis() + MAIL_EXPIRED_TIME)))
 			throw new ValidationException(AFTER_EXPIRED_TIME, 409);
 		return passwordEncoder.matches(code, mailCertification.getCode());
 	}
