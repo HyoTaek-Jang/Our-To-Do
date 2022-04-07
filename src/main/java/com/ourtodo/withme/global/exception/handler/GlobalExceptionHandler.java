@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.ourtodo.withme.global.dto.BaseExceptionResponse;
 import com.ourtodo.withme.global.dto.BaseResponse;
 import com.ourtodo.withme.global.exception.custom.ValidationException;
 
@@ -41,7 +42,8 @@ public class GlobalExceptionHandler {
 	private ResponseEntity<BaseResponse> handleException(Exception e) {
 		log.error("Internal Error Trace : {} ", Arrays.toString(e.getStackTrace()));
 		log.error("Error Message : {}",e.getMessage());
-		return ResponseEntity.status(500).body(new BaseResponse(e.getMessage()));
+		return ResponseEntity.status(500).body(new BaseExceptionResponse(e.getMessage(),
+			Arrays.toString(e.getStackTrace())));
 	}
 
 }
