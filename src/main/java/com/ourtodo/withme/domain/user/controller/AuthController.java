@@ -61,8 +61,8 @@ public class AuthController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<? extends BaseResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
+	public TokenDto login(@Valid @RequestBody LoginRequest loginRequest) {
 		TokenDto login = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
-		return null;
+		return login;
 	}
 }
