@@ -16,6 +16,7 @@ import com.ourtodo.withme.domain.user.dto.request.LoginRequest;
 import com.ourtodo.withme.domain.user.dto.request.SendCertificationMailRequest;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
 import com.ourtodo.withme.domain.user.dto.request.VerifyCertificationMailRequest;
+import com.ourtodo.withme.domain.user.dto.response.LoginResponse;
 import com.ourtodo.withme.domain.user.service.AuthService;
 import com.ourtodo.withme.domain.user.service.MailCertificationService;
 import com.ourtodo.withme.domain.user.service.SignupService;
@@ -36,15 +37,15 @@ public class AuthController {
 	private final AuthService authService;
 
 	@PostMapping("/signup")
-	public ResponseEntity<? extends BaseResponse> signupUser(@Valid @RequestBody SignupRequest signupRequest){
+	public ResponseEntity<? extends BaseResponse> signupUser(@Valid @RequestBody SignupRequest signupRequest) {
 		signupService.signupValid(signupRequest);
 		signupService.saveUser(signupRequest);
 		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_SIGNUP));
 	}
 
-
 	@PostMapping("/certification/signup")
-	public ResponseEntity<? extends BaseResponse> sendSignupCertificationMail(@Valid @RequestBody SendCertificationMailRequest sendCertificationMailRequest) throws
+	public ResponseEntity<? extends BaseResponse> sendSignupCertificationMail(
+		@Valid @RequestBody SendCertificationMailRequest sendCertificationMailRequest) throws
 		MessagingException {
 		String code = certificationService.saveMailCertification(sendCertificationMailRequest.getEmail());
 		mailService.sendSignUpCertificationMail(sendCertificationMailRequest.getEmail(), code);
@@ -52,7 +53,8 @@ public class AuthController {
 	}
 
 	@PostMapping("/certification/verification/signup")
-	public ResponseEntity<? extends BaseResponse> verifySignupCertificationMail(@Valid @RequestBody VerifyCertificationMailRequest verifyCertificationMailRequest){
+	public ResponseEntity<? extends BaseResponse> verifySignupCertificationMail(
+		@Valid @RequestBody VerifyCertificationMailRequest verifyCertificationMailRequest) {
 		boolean result = certificationService.verifyCertification(verifyCertificationMailRequest.getEmail(),
 			verifyCertificationMailRequest.getCode());
 		if (result)
@@ -61,8 +63,9 @@ public class AuthController {
 	}
 
 	@PostMapping("/login")
-	public TokenDto login(@Valid @RequestBody LoginRequest loginRequest) {
+	public ResponseEntity<? extends BaseResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
 		TokenDto login = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
-		return login;
+		return ResponseEntity.status(201)
+			.body(new LoginResponse(SUCCESS_LOGIN, login.getAccessToken(), login.getRefreshToken()));
 	}
 }

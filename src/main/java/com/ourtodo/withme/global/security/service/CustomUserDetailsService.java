@@ -1,4 +1,4 @@
-package com.ourtodo.withme.domain.user.service;
+package com.ourtodo.withme.global.security.service;
 
 import static com.ourtodo.withme.domain.user.constants.MailCertificationConstants.*;
 
