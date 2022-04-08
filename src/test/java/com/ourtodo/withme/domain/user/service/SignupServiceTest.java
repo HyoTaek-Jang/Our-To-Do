@@ -10,7 +10,7 @@ import com.ourtodo.withme.BaseTest;
 import com.ourtodo.withme.domain.user.db.domain.Member;
 import com.ourtodo.withme.domain.user.db.repository.MemberRepository;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
-import com.ourtodo.withme.global.exception.custom.ValidationException;
+import com.ourtodo.withme.global.exception.custom.BaseException;
 
 class SignupServiceTest extends BaseTest {
 
@@ -38,7 +38,7 @@ class SignupServiceTest extends BaseTest {
 
 		//when, that
 		Assertions.assertThatThrownBy(() -> signupService.signupValid(new SignupRequest(name, email, password, nonConfirmPassword)))
-			.isInstanceOf(ValidationException.class);
+			.isInstanceOf(BaseException.class);
 
 		// email 중복체크
 		//given
@@ -49,7 +49,7 @@ class SignupServiceTest extends BaseTest {
 
 		//that
 		Assertions.assertThatThrownBy(() -> signupService.signupValid(signupRequest))
-			.isInstanceOf(ValidationException.class);
+			.isInstanceOf(BaseException.class);
 	}
 
 	@Test

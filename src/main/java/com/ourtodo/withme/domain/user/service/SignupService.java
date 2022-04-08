@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ourtodo.withme.domain.user.db.domain.Member;
 import com.ourtodo.withme.domain.user.db.repository.MemberRepository;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
-import com.ourtodo.withme.global.exception.custom.ValidationException;
+import com.ourtodo.withme.global.exception.custom.BaseException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,10 +23,10 @@ public class SignupService {
 	@Transactional(readOnly = true)
 	public void signupValid(SignupRequest signupRequest) {
 		if (!signupRequest.getPassword().equals(signupRequest.getConfirmPassword()))
-			throw new ValidationException(NOT_SAME_PASSWORD, 400);
+			throw new BaseException(NOT_SAME_PASSWORD, 400);
 
 		if (memberRepository.findByEmail(signupRequest.getEmail()).isPresent())
-			throw new ValidationException(IS_EXIST_EMAIL, 409);
+			throw new BaseException(IS_EXIST_EMAIL, 409);
 	}
 
 	@Transactional

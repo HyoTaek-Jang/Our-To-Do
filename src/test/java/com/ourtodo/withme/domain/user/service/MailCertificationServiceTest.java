@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ourtodo.withme.BaseTest;
-import com.ourtodo.withme.global.exception.custom.ValidationException;
+import com.ourtodo.withme.global.exception.custom.BaseException;
 
 class MailCertificationServiceTest extends BaseTest {
 
@@ -31,6 +31,6 @@ class MailCertificationServiceTest extends BaseTest {
 
 		String finalEmail = email;
 		Assertions.assertThatThrownBy(() -> certificationService.verifyCertification(finalEmail, code)).isInstanceOf(
-			ValidationException.class);
+			BaseException.class);
 	}
 }

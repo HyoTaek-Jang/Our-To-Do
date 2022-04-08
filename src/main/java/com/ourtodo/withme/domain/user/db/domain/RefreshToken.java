@@ -10,11 +10,13 @@ import com.ourtodo.withme.global.entity.BaseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class RefreshToken extends BaseEntity {
 	@NotNull
 	private String refreshToken;

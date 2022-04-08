@@ -8,11 +8,9 @@ import lombok.Getter;
 @Getter
 public class LoginResponse extends BaseResponse {
 	private String accessToken;
-	private String refreshToken;
 
-	public LoginResponse(String msg, String accessToken, String refreshToken) {
+	public LoginResponse(String msg, String accessToken) {
 		super(msg);
 		this.accessToken = accessToken;
-		this.refreshToken = refreshToken;
 	}
 }

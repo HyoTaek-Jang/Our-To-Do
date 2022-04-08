@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ourtodo.withme.domain.user.db.domain.Member;
 import com.ourtodo.withme.domain.user.db.repository.MemberRepository;
-import com.ourtodo.withme.global.exception.custom.ValidationException;
+import com.ourtodo.withme.global.exception.custom.BaseException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return memberRepository.findByEmail(username)
 			.map(this::createUserDetails)
-			.orElseThrow(() -> new ValidationException(IS_NOT_EXIST_EMAIL, 409));
+			.orElseThrow(() -> new BaseException(IS_NOT_EXIST_EMAIL, 409));
 	}
 
 	// DB 에 User 값이 존재한다면 UserDetails 객체로 만들어서 리턴

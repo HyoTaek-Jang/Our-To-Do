@@ -3,10 +3,15 @@ package com.ourtodo.withme.domain.user.controller;
 import static com.ourtodo.withme.domain.user.constants.AuthControllerConstants.*;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.xml.bind.ValidationException;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +27,7 @@ import com.ourtodo.withme.domain.user.service.MailCertificationService;
 import com.ourtodo.withme.domain.user.service.SignupService;
 import com.ourtodo.withme.global.dto.BaseResponse;
 import com.ourtodo.withme.global.security.token.TokenDto;
+import com.ourtodo.withme.global.security.util.SecurityUtil;
 import com.ourtodo.withme.global.util.mail.MailService;
 
 import lombok.RequiredArgsConstructor;
@@ -63,9 +69,19 @@ public class AuthController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<? extends BaseResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
-		TokenDto login = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
+	public ResponseEntity<? extends BaseResponse> login(@Valid @RequestBody LoginRequest loginRequest, HttpServletResponse response) {
+		TokenDto token = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
+		authService.setRefreshToken(response, token.getRefreshToken());
 		return ResponseEntity.status(201)
-			.body(new LoginResponse(SUCCESS_LOGIN, login.getAccessToken(), login.getRefreshToken()));
+			.body(new LoginResponse(SUCCESS_LOGIN, token.getAccessToken()));
+	}
+
+	@PostMapping("/refresh")
+	public ResponseEntity<? extends BaseResponse> reissueToken(HttpServletRequest request, HttpServletResponse response, @CookieValue(name = "refreshToken") String refreshToken) {
+		String accessToken = SecurityUtil.resolveToken(request);
+		TokenDto tokenDto = authService.reissueToken(accessToken, refreshToken);
+		authService.setRefreshToken(response, tokenDto.getRefreshToken());
+		return ResponseEntity.status(201)
+			.body(new LoginResponse(SUCCESS_REFRESH, tokenDto.getAccessToken()));
 	}
 }

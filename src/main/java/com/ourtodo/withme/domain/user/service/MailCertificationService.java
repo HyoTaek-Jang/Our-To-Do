@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ourtodo.withme.domain.user.db.domain.MailCertification;
 import com.ourtodo.withme.domain.user.db.repository.MailCertificationRepository;
-import com.ourtodo.withme.global.exception.custom.ValidationException;
+import com.ourtodo.withme.global.exception.custom.BaseException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,9 +39,9 @@ public class MailCertificationService {
 	@Transactional(readOnly = true)
 	public boolean verifyCertification(String email, String code) {
 		MailCertification mailCertification = mailCertificationRepository.findByEmail(email)
-			.orElseThrow(() -> new ValidationException(IS_NOT_EXIST_EMAIL, 409));
+			.orElseThrow(() -> new BaseException(IS_NOT_EXIST_EMAIL, 409));
 		if (!mailCertification.getUpdatedAt().after(new Date(System.currentTimeMillis() - MAIL_EXPIRED_TIME)))
-			throw new ValidationException(AFTER_EXPIRED_TIME, 409);
+			throw new BaseException(AFTER_EXPIRED_TIME, 409);
 		return passwordEncoder.matches(code, mailCertification.getCode());
 	}
 }

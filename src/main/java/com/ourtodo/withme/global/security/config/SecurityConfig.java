@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest().authenticated() // 나머지 API 는 전부 인증 필요
 			.and()
 			.apply(new JwtSecurityConfig(tokenProvider));
+
 	}
 
 }

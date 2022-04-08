@@ -9,4 +9,5 @@ public class AuthControllerConstants {
 	public static final String NOT_MATCH_PASSWORD = "비밀번호가 일치하지 않습니다.";
 
 	public static final String SUCCESS_LOGIN = "로그인에 성공했습니다.";
+	public static final String SUCCESS_REFRESH = "토큰 재발급에 성공했습니다.";
 }

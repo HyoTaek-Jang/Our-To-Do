@@ -1,8 +1,10 @@
 package com.ourtodo.withme.domain.user.service;
 
 import static com.ourtodo.withme.domain.user.constants.MailCertificationConstants.*;
+import static com.ourtodo.withme.domain.user.constants.TokenConstants.*;
 
-import java.util.Optional;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ourtodo.withme.domain.user.db.domain.Member;
 import com.ourtodo.withme.domain.user.db.repository.MemberRepository;
 import com.ourtodo.withme.domain.user.db.repository.RefreshTokenRepository;
-import com.ourtodo.withme.global.exception.custom.ValidationException;
+import com.ourtodo.withme.global.exception.custom.BaseException;
 import com.ourtodo.withme.domain.user.db.domain.RefreshToken;
 import com.ourtodo.withme.global.security.token.TokenDto;
 import com.ourtodo.withme.global.security.token.TokenProvider;
@@ -48,9 +50,10 @@ public class AuthService {
 		return tokenDto;
 	}
 
+	@Transactional
 	public void updateRefreshToken(Long memberId, String refreshToken) {
 		Member member = memberRepository.findById(memberId)
-			.orElseThrow(() -> new ValidationException(IS_NOT_EXIST_EMAIL, 409));
+			.orElseThrow(() -> new BaseException(IS_NOT_EXIST_EMAIL, 409));
 		RefreshToken refreshTokenEntity = refreshTokenRepository.findByMember(member).orElse(null);
 		if (refreshTokenEntity == null) {
 			refreshTokenEntity = new RefreshToken(refreshToken, member);
@@ -58,5 +61,38 @@ public class AuthService {
 			refreshTokenEntity.updateRefreshToken(refreshToken);
 		}
 		refreshTokenRepository.save(refreshTokenEntity);
+	}
+
+	@Transactional
+	public TokenDto reissueToken(String accessToken, String refreshToken) {
+		// 1. Refresh Token 검증
+		if (!tokenProvider.validateToken(refreshToken)) {
+			throw new BaseException(NOT_VALID_TOKEN, 409);
+		}
+
+		// 2. Access Token 에서 Member ID 가져오기
+		Authentication authentication = tokenProvider.getAuthentication(accessToken);
+
+		// 3. 저장소에서 Member ID 를 기반으로 Refresh Token 값 가져옴
+		Member member = memberRepository.findById(Long.parseLong(authentication.getName()))
+			.orElseThrow(() -> new BaseException(IS_NOT_EXIST_EMAIL, 409));
+		RefreshToken refreshTokenEntity = refreshTokenRepository.findByMember(member)
+			.orElseThrow(() -> new BaseException(NOT_VALID_TOKEN, 409));
+
+		// 4. Refresh Token 일치하는지 검사
+		if (!refreshTokenEntity.getRefreshToken().equals(refreshToken)) {
+			throw new BaseException(NOT_VALID_TOKEN, 409);
+		}
+
+		TokenDto tokenDto = tokenProvider.generateTokenDto(authentication);
+		updateRefreshToken(Long.parseLong(authentication.getName()), tokenDto.getRefreshToken());
+
+		return tokenDto;
+	}
+
+	public void setRefreshToken(HttpServletResponse response, String refreshToken) {
+		Cookie cookie = new Cookie(COOKIE_REFRESH_TOKEN, refreshToken);
+		cookie.setHttpOnly(true);
+		response.addCookie(cookie);
 	}
 }
