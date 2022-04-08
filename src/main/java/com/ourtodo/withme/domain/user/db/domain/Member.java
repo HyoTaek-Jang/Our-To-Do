@@ -24,9 +24,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Member extends BaseEntity {
 	@NotNull
-	private String name;
-
-	@NotNull
 	private String email;
 
 	@Enumerated(EnumType.STRING)

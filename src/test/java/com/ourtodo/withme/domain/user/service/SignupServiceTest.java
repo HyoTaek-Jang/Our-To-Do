@@ -31,19 +31,18 @@ class SignupServiceTest extends BaseTest {
 	void signupServiceValidationTest(){
 		//비밀번호 일치 확인
 		//given
-		String name = "장효택";
 		String email = "hyotaek9812@gmail.com";
 		String password = "a1234567";
 		String nonConfirmPassword = "a123457";
 
 		//when, that
-		Assertions.assertThatThrownBy(() -> signupService.signupValid(new SignupRequest(name, email, password, nonConfirmPassword)))
+		Assertions.assertThatThrownBy(() -> signupService.signupValid(new SignupRequest(email, password, nonConfirmPassword)))
 			.isInstanceOf(BaseException.class);
 
 		// email 중복체크
 		//given
 		String confirmPassword = "a1234567";
-		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
+		SignupRequest signupRequest = new SignupRequest(email, password, confirmPassword);
 		//when
 		memberRepository.save(signupRequest.toEntity(confirmPassword));
 
@@ -56,11 +55,10 @@ class SignupServiceTest extends BaseTest {
 	@DisplayName("비밀번호 암호화 검사")
 	void encryptPasswordTest(){
 		//given
-		String name = "장효택";
 		String email = "hyotaek9812@gmail.com";
 		String password = "a1234567";
 		String confirmPassword = "a1234567";
-		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
+		SignupRequest signupRequest = new SignupRequest(email, password, confirmPassword);
 
 		//when
 		Member member = signupService.saveUser(signupRequest);

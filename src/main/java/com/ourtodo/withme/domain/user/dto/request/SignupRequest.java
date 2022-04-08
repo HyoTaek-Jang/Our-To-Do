@@ -18,9 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignupRequest {
-	@NotNull(message = IS_NULL)
-	private String name;
-
 	@Email(message = NOT_MATCH_EMAIL)
 	@NotNull(message = IS_NULL)
 	private String email;
@@ -35,7 +32,6 @@ public class SignupRequest {
 	public Member toEntity(String encryptedPassword) {
 		return Member.builder()
 			.email(this.email)
-			.name(this.name)
 			.password(encryptedPassword)
 			.authority(Authority.ROLE_USER)
 			.build();
