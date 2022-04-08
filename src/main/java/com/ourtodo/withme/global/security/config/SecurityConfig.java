@@ -10,10 +10,18 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.ourtodo.withme.global.security.exception.JwtAccessDeniedHandler;
+import com.ourtodo.withme.global.security.exception.JwtAuthenticationEntryPoint;
+import com.ourtodo.withme.global.security.token.TokenProvider;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	private final TokenProvider tokenProvider;
+	private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
 	@Bean
 	public PasswordEncoder passwordEncoder(){
@@ -27,12 +35,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			// 세션을 사용하지 않기 때문에 세션 설정을 Stateless 로 설정
 			.sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and()
+			.exceptionHandling()
+			.authenticationEntryPoint(jwtAuthenticationEntryPoint)
+			.accessDeniedHandler(jwtAccessDeniedHandler)
 
 			// 로그인, 회원가입 API 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll 설정
 			.and()
 			.authorizeRequests()
 			.antMatchers("/auth/**").permitAll()
-			.anyRequest().authenticated(); // 나머지 API 는 전부 인증 필요
+			.anyRequest().authenticated() // 나머지 API 는 전부 인증 필요
+			.and()
+			.apply(new JwtSecurityConfig(tokenProvider));
+
 	}
 
 }

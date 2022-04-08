@@ -10,7 +10,7 @@ spring:
     open-in-view: false
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     #    defer-datasource-initialization: true
     properties:
       hibernate:
@@ -37,6 +37,9 @@ logging:
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
+
+jwt:
+  secret: ENC(wXcIGSwzpWy0u/2CkJ7F7LQxKA4YPD42GI7kidEdzzQ9+wGnGPdQ4JzKjzewuICM8fFkAVk/ybEhN0RGSVxqxjcFWJfYtA8nSacTcbmaKkU=)
 
 ---
 

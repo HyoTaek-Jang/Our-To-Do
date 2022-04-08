@@ -7,22 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.ourtodo.withme.BaseTest;
-import com.ourtodo.withme.domain.user.db.domain.User;
-import com.ourtodo.withme.domain.user.db.repository.UserRepository;
+import com.ourtodo.withme.domain.user.db.domain.Member;
+import com.ourtodo.withme.domain.user.db.repository.MemberRepository;
 import com.ourtodo.withme.domain.user.dto.request.SignupRequest;
-import com.ourtodo.withme.global.exception.custom.ValidationException;
+import com.ourtodo.withme.global.exception.custom.BaseException;
 
 class SignupServiceTest extends BaseTest {
 
 	private final SignupService signupService;
-	private final UserRepository userRepository;
+	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
 	public SignupServiceTest(SignupService signupService,
-		UserRepository userRepository, PasswordEncoder passwordEncoder) {
+		MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
 		this.signupService = signupService;
-		this.userRepository = userRepository;
+		this.memberRepository = memberRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -31,41 +31,39 @@ class SignupServiceTest extends BaseTest {
 	void signupServiceValidationTest(){
 		//비밀번호 일치 확인
 		//given
-		String name = "장효택";
 		String email = "hyotaek9812@gmail.com";
 		String password = "a1234567";
 		String nonConfirmPassword = "a123457";
 
 		//when, that
-		Assertions.assertThatThrownBy(() -> signupService.signupValid(new SignupRequest(name, email, password, nonConfirmPassword)))
-			.isInstanceOf(ValidationException.class);
+		Assertions.assertThatThrownBy(() -> signupService.signupValid(new SignupRequest(email, password, nonConfirmPassword)))
+			.isInstanceOf(BaseException.class);
 
 		// email 중복체크
 		//given
 		String confirmPassword = "a1234567";
-		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
+		SignupRequest signupRequest = new SignupRequest(email, password, confirmPassword);
 		//when
-		userRepository.save(signupRequest.toEntity(confirmPassword));
+		memberRepository.save(signupRequest.toEntity(confirmPassword));
 
 		//that
 		Assertions.assertThatThrownBy(() -> signupService.signupValid(signupRequest))
-			.isInstanceOf(ValidationException.class);
+			.isInstanceOf(BaseException.class);
 	}
 
 	@Test
 	@DisplayName("비밀번호 암호화 검사")
 	void encryptPasswordTest(){
 		//given
-		String name = "장효택";
 		String email = "hyotaek9812@gmail.com";
 		String password = "a1234567";
 		String confirmPassword = "a1234567";
-		SignupRequest signupRequest = new SignupRequest(name, email, password, confirmPassword);
+		SignupRequest signupRequest = new SignupRequest(email, password, confirmPassword);
 
 		//when
-		User user = signupService.saveUser(signupRequest);
+		Member member = signupService.saveUser(signupRequest);
 
 		//that
-		Assertions.assertThat(passwordEncoder.matches(password, user.getPassword())).isTrue();
+		Assertions.assertThat(passwordEncoder.matches(password, member.getPassword())).isTrue();
 	}
 }

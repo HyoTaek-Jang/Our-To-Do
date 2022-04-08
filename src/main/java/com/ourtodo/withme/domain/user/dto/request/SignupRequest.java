@@ -7,7 +7,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.ourtodo.withme.domain.user.db.domain.User;
+import com.ourtodo.withme.domain.user.db.domain.Authority;
+import com.ourtodo.withme.domain.user.db.domain.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,9 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignupRequest {
-	@NotNull(message = IS_NULL)
-	private String name;
-
 	@Email(message = NOT_MATCH_EMAIL)
 	@NotNull(message = IS_NULL)
 	private String email;
@@ -31,11 +29,11 @@ public class SignupRequest {
 	@NotNull(message = IS_NULL)
 	private String confirmPassword;
 
-	public User toEntity(String encryptedPassword) {
-		return User.builder()
+	public Member toEntity(String encryptedPassword) {
+		return Member.builder()
 			.email(this.email)
-			.name(this.name)
 			.password(encryptedPassword)
+			.authority(Authority.ROLE_USER)
 			.build();
 	}
 }

@@ -21,10 +21,9 @@ class AuthControllerTest extends BaseTest {
 
 		//email 형식 검사
 		//given
-		String name = "장효택";
 		String email = "hyotaek9812";
 		String password = "a12345678";
-		SignupRequest signupRequest = new SignupRequest(name, email, password, password);
+		SignupRequest signupRequest = new SignupRequest(email, password, password);
 
 		//when
 		ResultActions perform = this.mockMvc.perform(post("/auth/signup").contentType(MediaType.APPLICATION_JSON)
@@ -37,7 +36,7 @@ class AuthControllerTest extends BaseTest {
 		//given
 		email = "hyotaek9812@gmail.com";
 		password = "a12345";
-		signupRequest = new SignupRequest(name, email, password, password);
+		signupRequest = new SignupRequest(email, password, password);
 
 		//when
 		perform = this.mockMvc.perform(post("/auth/signup").contentType(MediaType.APPLICATION_JSON)
