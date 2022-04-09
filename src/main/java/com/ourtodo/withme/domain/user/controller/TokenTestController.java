@@ -16,10 +16,7 @@ public class TokenTestController {
 
 	@GetMapping("/token")
 	public ResponseEntity<BaseResponse> tokenTest(HttpServletRequest request) {
-		String s = SecurityUtil.resolveToken(request);
 		Long currentMemberId = SecurityUtil.getCurrentMemberId();
-		System.out.println("s = " + s);
-		System.out.println("currentMemberId = " + currentMemberId);
 		return ResponseEntity.ok(new BaseResponse(String.valueOf(currentMemberId)));
 	}
 }
