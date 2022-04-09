@@ -45,4 +45,20 @@ class AuthControllerTest extends BaseTest {
 		//then
 		perform.andExpect(status().is4xxClientError()).andExpect(jsonPath("message", String.class).value(LESS_THAN_MIN_LENGTH));
 	}
+
+	@Test
+	@DisplayName("회원가입 성공 테스트")
+	void signupSuccessTest() throws Exception {
+		//given
+		String email = "a123@naver.com";
+		String password = "a12345678";
+		SignupRequest signupRequest = new SignupRequest(email, password, password);
+
+		//when
+		ResultActions perform = this.mockMvc.perform(post("/auth/signup").contentType(MediaType.APPLICATION_JSON)
+			.content(this.objectMapper.writeValueAsString(signupRequest)));
+
+		//then
+		perform.andExpect(status().isCreated());
+	}
 }
