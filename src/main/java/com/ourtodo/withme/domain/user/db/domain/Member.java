@@ -10,7 +10,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.ourtodo.withme.global.entity.BaseEntity;
+import com.ourtodo.withme.global.entity.BaseEntityWithDate;
+import com.ourtodo.withme.global.security.token.Authority;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class Member extends BaseEntity {
+public class Member extends BaseEntityWithDate {
 	@NotNull
 	private String email;
 

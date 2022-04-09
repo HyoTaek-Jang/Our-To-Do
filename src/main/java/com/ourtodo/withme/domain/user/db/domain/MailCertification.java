@@ -7,13 +7,13 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-import com.ourtodo.withme.global.entity.BaseEntity;
+import com.ourtodo.withme.global.entity.BaseEntityWithDate;
 
 import lombok.Getter;
 
 @Entity
 @Getter
-public class MailCertification extends BaseEntity {
+public class MailCertification extends BaseEntityWithDate {
 	@NotNull(message = IS_NULL)
 	private String code;
 

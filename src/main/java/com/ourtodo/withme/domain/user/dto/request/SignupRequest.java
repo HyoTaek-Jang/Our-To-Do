@@ -7,7 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.ourtodo.withme.domain.user.db.domain.Authority;
+import com.ourtodo.withme.global.security.token.Authority;
 import com.ourtodo.withme.domain.user.db.domain.Member;
 
 import lombok.AllArgsConstructor;

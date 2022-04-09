@@ -5,11 +5,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import com.ourtodo.withme.domain.user.db.domain.Member;
-import com.ourtodo.withme.global.entity.BaseEntity;
+import com.ourtodo.withme.global.entity.BaseEntityWithDate;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class RefreshToken extends BaseEntity {
+public class RefreshToken extends BaseEntityWithDate {
 	@NotNull
 	private String refreshToken;
 	@OneToOne

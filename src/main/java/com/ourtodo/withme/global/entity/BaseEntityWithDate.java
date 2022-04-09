@@ -16,7 +16,7 @@ import lombok.Getter;
 
 @Getter
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntityWithDate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

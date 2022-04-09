@@ -2,6 +2,9 @@ package com.ourtodo.withme.domain.user.service;
 
 import static com.ourtodo.withme.domain.user.constants.MailCertificationConstants.*;
 import static com.ourtodo.withme.domain.user.constants.TokenConstants.*;
+import static com.ourtodo.withme.global.security.token.TokenProvider.*;
+
+import java.util.Date;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -93,6 +96,7 @@ public class AuthService {
 	public void setRefreshToken(HttpServletResponse response, String refreshToken) {
 		Cookie cookie = new Cookie(COOKIE_REFRESH_TOKEN, refreshToken);
 		cookie.setHttpOnly(true);
+		cookie.setMaxAge((int)REFRESH_TOKEN_EXPIRE_TIME / 1000);
 		response.addCookie(cookie);
 	}
 }
