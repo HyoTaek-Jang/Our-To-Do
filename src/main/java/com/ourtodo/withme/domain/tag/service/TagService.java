@@ -1,12 +1,14 @@
 package com.ourtodo.withme.domain.tag.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ourtodo.withme.domain.tag.db.domain.Tag;
 import com.ourtodo.withme.domain.tag.db.repository.TagRepository;
+import com.ourtodo.withme.domain.tag.dto.TagDto;
 import com.ourtodo.withme.domain.user.db.domain.Member;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,7 @@ public class TagService {
 		return tagRepository.save(tag);
 	}
 
-	public List<Tag> findTagList(Member memberById) {
-		return tagRepository.findAllByMember(memberById);
+	public List<TagDto> findTagList(Member memberById) {
+		return tagRepository.findAllByMember(memberById).stream().map(TagDto::new).collect(Collectors.toList());
 	}
 }

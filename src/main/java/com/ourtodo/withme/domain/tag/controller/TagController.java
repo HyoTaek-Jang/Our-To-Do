@@ -45,10 +45,7 @@ public class TagController {
 	public ResponseEntity<? extends BaseResponse> findTagList() {
 		Long currentMemberId = SecurityUtil.getCurrentMemberId();
 		Member memberById = memberService.findMemberById(currentMemberId);
-		List<TagDto> tagDtoList = tagService.findTagList(memberById)
-			.stream()
-			.map(TagDto::new)
-			.collect(Collectors.toList());
+		List<TagDto> tagDtoList = tagService.findTagList(memberById);
 		return ResponseEntity.status(200).body(new FindTagListResponse(SUCCESS_FIND_TAGS, tagDtoList));
 	}
 }
