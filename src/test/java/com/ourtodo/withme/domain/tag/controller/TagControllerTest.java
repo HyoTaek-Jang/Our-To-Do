@@ -1,7 +1,10 @@
 package com.ourtodo.withme.domain.tag.controller;
 
+import static com.ourtodo.withme.global.constants.CommonValidationConstants.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,5 +61,16 @@ class TagControllerTest extends BaseTest {
 
 		//then
 		perform.andExpect(status().is4xxClientError());
+	}
+
+	@Test
+	@DisplayName("태그 조회 테스트 - 비어있는 리스트")
+	@WithMockUser(value = USER_ID)
+	void findTagListTest() throws Exception {
+		//when
+		ResultActions perform = this.mockMvc.perform(get("/tag/list"));
+
+		//then
+		perform.andExpect(status().isOk()).andExpect(jsonPath("tagList", List.class).isEmpty());
 	}
 }
