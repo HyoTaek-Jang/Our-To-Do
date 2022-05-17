@@ -10,11 +10,13 @@ import com.ourtodo.withme.domain.user.db.domain.Member;
 import com.ourtodo.withme.global.entity.BaseEntityWithDate;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class Tag extends BaseEntityWithDate {
 	@NotNull
 	private String name;

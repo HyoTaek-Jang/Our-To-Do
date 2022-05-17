@@ -1,5 +1,7 @@
 package com.ourtodo.withme.domain.tag.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,5 +20,9 @@ public class TagService {
 	public Tag addTag(Member member, String name, String color) {
 		Tag tag = new Tag(name, color, member);
 		return tagRepository.save(tag);
+	}
+
+	public List<Tag> findTagList(Member memberById) {
+		return tagRepository.findAllByMember(memberById);
 	}
 }
