@@ -31,4 +31,8 @@ public class Tag extends BaseEntityWithDate {
 	public void updateName(String name) {
 		this.name = name;
 	}
+
+	public void updateColor(String color) {
+		this.color = color;
+	}
 }

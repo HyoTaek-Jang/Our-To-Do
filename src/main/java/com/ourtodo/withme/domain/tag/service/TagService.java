@@ -36,13 +36,22 @@ public class TagService {
 	}
 
 	public Tag changeTagName(Long currentMemberId, Long tagId, String name) {
+		Tag tag = isMembersTag(currentMemberId, tagId);
+		tag.updateName(name);
+		return tagRepository.save(tag);
+	}
+
+	private Tag isMembersTag(Long currentMemberId, Long tagId) {
 		Member memberById = memberService.findMemberById(currentMemberId);
 		Tag tag = tagRepository.findById(tagId).orElseThrow(() -> new BaseException(NOT_EXIST_TAG, 409));
-
 		if (!Objects.equals(memberById.getId(), tag.getMember().getId()))
 			throw new BaseException(NOT_MATCH_TAG_WITH_MEMBER, 401);
+		return tag;
+	}
 
-		tag.updateName(name);
+	public Tag changeTagColor(Long currentMemberId, Long tagId, String color) {
+		Tag tag = isMembersTag(currentMemberId, tagId);
+		tag.updateColor(color);
 		return tagRepository.save(tag);
 	}
 }

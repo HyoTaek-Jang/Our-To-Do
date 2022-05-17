@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ourtodo.withme.domain.tag.db.domain.Tag;
 import com.ourtodo.withme.domain.tag.dto.TagDto;
 import com.ourtodo.withme.domain.tag.dto.request.AddTagRequest;
+import com.ourtodo.withme.domain.tag.dto.request.ChangeTagColor;
 import com.ourtodo.withme.domain.tag.dto.request.ChangeTagName;
 import com.ourtodo.withme.domain.tag.dto.response.FindTagListResponse;
 import com.ourtodo.withme.domain.tag.service.TagService;
@@ -56,6 +57,13 @@ public class TagController {
 	public ResponseEntity<? extends BaseResponse> changeTagName(@Valid @RequestBody ChangeTagName changeTagName) {
 		Long currentMemberId = SecurityUtil.getCurrentMemberId();
 		tagService.changeTagName(currentMemberId, changeTagName.getTagId(), changeTagName.getName());
+		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_UPDATE_TAG));
+	}
+
+	@PutMapping("/color")
+	public ResponseEntity<? extends BaseResponse> changeTagColor(@Valid @RequestBody ChangeTagColor changeTagColor) {
+		Long currentMemberId = SecurityUtil.getCurrentMemberId();
+		tagService.changeTagColor(currentMemberId, changeTagColor.getTagId(), changeTagColor.getColor());
 		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_UPDATE_TAG));
 	}
 }
