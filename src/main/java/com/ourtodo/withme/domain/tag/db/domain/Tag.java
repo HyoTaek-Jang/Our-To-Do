@@ -27,4 +27,8 @@ public class Tag extends BaseEntityWithDate {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private Member member;
+
+	public void updateName(String name) {
+		this.name = name;
+	}
 }

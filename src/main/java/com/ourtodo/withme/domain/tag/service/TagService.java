@@ -1,6 +1,10 @@
 package com.ourtodo.withme.domain.tag.service;
 
+import static com.ourtodo.withme.domain.tag.constants.TagValidationConstants.*;
+import static com.ourtodo.withme.domain.user.constants.MemberConstants.*;
+
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -10,6 +14,8 @@ import com.ourtodo.withme.domain.tag.db.domain.Tag;
 import com.ourtodo.withme.domain.tag.db.repository.TagRepository;
 import com.ourtodo.withme.domain.tag.dto.TagDto;
 import com.ourtodo.withme.domain.user.db.domain.Member;
+import com.ourtodo.withme.domain.user.service.MemberService;
+import com.ourtodo.withme.global.exception.custom.BaseException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TagService {
 	private final TagRepository tagRepository;
+	private final MemberService memberService;
 
 	@Transactional
 	public Tag addTag(Member member, String name, String color) {
@@ -26,5 +33,16 @@ public class TagService {
 
 	public List<TagDto> findTagList(Member memberById) {
 		return tagRepository.findAllByMember(memberById).stream().map(TagDto::new).collect(Collectors.toList());
+	}
+
+	public Tag changeTagName(Long currentMemberId, Long tagId, String name) {
+		Member memberById = memberService.findMemberById(currentMemberId);
+		Tag tag = tagRepository.findById(tagId).orElseThrow(() -> new BaseException(NOT_EXIST_TAG, 409));
+
+		if (!Objects.equals(memberById.getId(), tag.getMember().getId()))
+			throw new BaseException(NOT_MATCH_TAG_WITH_MEMBER, 401);
+
+		tag.updateName(name);
+		return tagRepository.save(tag);
 	}
 }
