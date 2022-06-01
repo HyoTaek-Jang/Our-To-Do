@@ -11,4 +11,6 @@ import com.ourtodo.withme.domain.user.db.domain.Member;
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Long> {
 	List<Tag> findAllByMember(Member memberById);
+
+	Tag findByMemberAndName(Member member, String commonTag);
 }
