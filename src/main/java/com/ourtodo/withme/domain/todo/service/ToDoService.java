@@ -34,7 +34,7 @@ public class ToDoService {
 			tag = tagRepository.findByMemberAndName(member, COMMON_TAG);
 		}
 
-		Long lastOrder = toDoRepository.findLastOrderByTag(tag.getId());
+		Long lastOrder = toDoRepository.findLastOrderByTag(tag);
 
 		return toDoRepository.save(new ToDo(content, false, tag, lastOrder + 1));
 	}
