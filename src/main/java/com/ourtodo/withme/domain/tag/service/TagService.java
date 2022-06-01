@@ -3,6 +3,7 @@ package com.ourtodo.withme.domain.tag.service;
 import static com.ourtodo.withme.domain.tag.constants.TagValidationConstants.*;
 import static com.ourtodo.withme.domain.user.constants.MemberConstants.*;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class TagService {
 
 	@Transactional
 	public Tag addTag(Member member, String name, String color) {
-		Tag tag = new Tag(name, color, member);
+		Tag tag = new Tag(name, color, member, new LinkedList<>());
 		return tagRepository.save(tag);
 	}
 
