@@ -5,13 +5,14 @@ import static com.ourtodo.withme.domain.todo.constants.ToDoControllerConstants.*
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ourtodo.withme.domain.todo.db.domain.ToDo;
 import com.ourtodo.withme.domain.todo.dto.request.AddToDoRequest;
 import com.ourtodo.withme.domain.todo.dto.request.UpdateToDoRequest;
 import com.ourtodo.withme.domain.todo.service.ToDoService;
@@ -36,9 +37,16 @@ public class ToDoController {
 
 	@PutMapping
 	public ResponseEntity<? extends BaseResponse> updateTodo(@Valid @RequestBody UpdateToDoRequest updateToDoRequest) {
-		toDoService.updateTodo(updateToDoRequest.getTodoId(), updateToDoRequest.getTagId(),
-			updateToDoRequest.getContent());
+		Long currentMemberId = SecurityUtil.getCurrentMemberId();
+		toDoService.updateTodo(currentMemberId, updateToDoRequest);
 		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_UPDATE_TODO));
+	}
+
+	@DeleteMapping("/{todoId}")
+	public ResponseEntity<? extends BaseResponse> deleteTodo(@PathVariable Long todoId) {
+		Long currentMemberId = SecurityUtil.getCurrentMemberId();
+		toDoService.deleteTodo(currentMemberId, todoId);
+		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_DELETE_TODO));
 	}
 }
 

@@ -11,6 +11,7 @@ import com.ourtodo.withme.domain.tag.db.domain.Tag;
 import com.ourtodo.withme.domain.tag.db.repository.TagRepository;
 import com.ourtodo.withme.domain.todo.db.domain.ToDo;
 import com.ourtodo.withme.domain.todo.db.repository.ToDoRepository;
+import com.ourtodo.withme.domain.todo.dto.request.UpdateToDoRequest;
 import com.ourtodo.withme.domain.user.db.domain.Member;
 import com.ourtodo.withme.domain.user.db.repository.MemberRepository;
 import com.ourtodo.withme.global.exception.custom.BaseException;
@@ -40,13 +41,30 @@ public class ToDoService {
 	}
 
 	@Transactional
-	public void updateTodo(Long todoId, Long tagId, String content) {
-		ToDo toDo = toDoRepository.findById(todoId).orElseThrow(() -> new BaseException(NOT_EXIST_TODO, 400));
-		Tag tag = tagRepository.findById(tagId).orElseThrow(() -> new BaseException(NOT_EXIST_TAG, 400));
+	public void updateTodo(Long memberId, UpdateToDoRequest updateToDoRequest) {
+		ToDo toDo = toDoRepository.findById(updateToDoRequest.getTodoId()).orElseThrow(() -> new BaseException(NOT_EXIST_TODO, 400));
+		Tag tag = tagRepository.findById(updateToDoRequest.getTagId()).orElseThrow(() -> new BaseException(NOT_EXIST_TAG, 400));
+		Member member = memberRepository.findById(memberId).orElse(null);
+
+		if (!(toDo.getTag().equals(tag) && tag.getMember().equals(member))) {
+			throw new BaseException(NOT_MATCH_TODO, 400);
+		}
 
 		toDo.updateTag(tag);
-		toDo.updateContent(content);
+		toDo.updateContent(updateToDoRequest.getContent());
 
 		toDoRepository.save(toDo);
+	}
+
+	@Transactional
+	public void deleteTodo(Long memberId, Long todoId) {
+		ToDo toDo = toDoRepository.findById(todoId).orElseThrow(() -> new BaseException(NOT_EXIST_TODO, 400));
+		Member member = memberRepository.findById(memberId).orElse(null);
+
+		if (!toDo.getTag().getMember().equals(member)) {
+			throw new BaseException(NOT_MATCH_TODO, 400);
+		}
+
+		toDoRepository.delete(toDo);
 	}
 }
