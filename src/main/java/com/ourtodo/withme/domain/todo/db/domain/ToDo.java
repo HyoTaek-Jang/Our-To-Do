@@ -28,4 +28,12 @@ public class ToDo extends BaseEntityWithDate {
 
 	@NotNull
 	private Long ordering;
+
+	public void updateTag(Tag tag) {
+		this.tag = tag;
+	}
+
+	public void updateContent(String content) {
+		this.content = content;
+	}
 }

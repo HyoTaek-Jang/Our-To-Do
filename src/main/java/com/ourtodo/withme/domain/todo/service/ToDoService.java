@@ -2,6 +2,7 @@ package com.ourtodo.withme.domain.todo.service;
 
 import static com.ourtodo.withme.domain.tag.constants.TagConstants.*;
 import static com.ourtodo.withme.domain.tag.constants.TagValidationConstants.*;
+import static com.ourtodo.withme.domain.todo.constants.ToDoValidationConstants.*;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +36,17 @@ public class ToDoService {
 		}
 
 		Long lastOrder = toDoRepository.findLastOrderByTag(tag);
-
 		return toDoRepository.save(new ToDo(content, false, tag, lastOrder + 1));
+	}
+
+	@Transactional
+	public void updateTodo(Long todoId, Long tagId, String content) {
+		ToDo toDo = toDoRepository.findById(todoId).orElseThrow(() -> new BaseException(NOT_EXIST_TODO, 400));
+		Tag tag = tagRepository.findById(tagId).orElseThrow(() -> new BaseException(NOT_EXIST_TAG, 400));
+
+		toDo.updateTag(tag);
+		toDo.updateContent(content);
+
+		toDoRepository.save(toDo);
 	}
 }
