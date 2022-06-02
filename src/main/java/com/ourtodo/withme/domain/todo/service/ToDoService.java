@@ -58,13 +58,24 @@ public class ToDoService {
 
 	@Transactional
 	public void deleteTodo(Long memberId, Long todoId) {
+		ToDo toDo = checkOwnTodo(memberId, todoId);
+		toDoRepository.delete(toDo);
+	}
+
+	@Transactional
+	public void toggleIsCompletedTodo(Long memberId, Long todoId) {
+		ToDo toDo = checkOwnTodo(memberId, todoId);
+		toDo.toggleIsCompleted();
+		toDoRepository.save(toDo);
+	}
+
+	private ToDo checkOwnTodo(Long memberId, Long todoId) {
 		ToDo toDo = toDoRepository.findById(todoId).orElseThrow(() -> new BaseException(NOT_EXIST_TODO, 400));
 		Member member = memberRepository.findById(memberId).orElse(null);
 
 		if (!toDo.getTag().getMember().equals(member)) {
 			throw new BaseException(NOT_MATCH_TODO, 400);
 		}
-
-		toDoRepository.delete(toDo);
+		return toDo;
 	}
 }

@@ -48,5 +48,12 @@ public class ToDoController {
 		toDoService.deleteTodo(currentMemberId, todoId);
 		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_DELETE_TODO));
 	}
+
+	@PostMapping("/toggle/{todoId}")
+	public ResponseEntity<? extends BaseResponse> toggleTodo(@PathVariable Long todoId) {
+		Long currentMemberId = SecurityUtil.getCurrentMemberId();
+		toDoService.toggleIsCompletedTodo(currentMemberId, todoId);
+		return ResponseEntity.status(201).body(new BaseResponse(SUCCESS_TOGGLE_TODO));
+	}
 }
 

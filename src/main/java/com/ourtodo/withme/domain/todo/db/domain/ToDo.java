@@ -38,4 +38,8 @@ public class ToDo extends BaseEntityWithDate {
 	public void updateContent(String content) {
 		this.content = content;
 	}
+
+	public void toggleIsCompleted() {
+		this.isCompleted = !this.isCompleted;
+	}
 }
