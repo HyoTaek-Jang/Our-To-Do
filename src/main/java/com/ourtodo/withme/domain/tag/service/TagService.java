@@ -55,4 +55,10 @@ public class TagService {
 		tag.updateColor(color);
 		return tagRepository.save(tag);
 	}
+
+	public List<Tag> findTodosWithTag(Long currentMemberId) {
+		Member memberById = memberService.findMemberById(currentMemberId);
+		List<Tag> tagsWithTodos = tagRepository.findAllWithTodoByMember(memberById);
+		return tagsWithTodos;
+	}
 }
