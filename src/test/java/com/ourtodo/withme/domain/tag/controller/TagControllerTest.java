@@ -4,6 +4,7 @@ import static com.ourtodo.withme.domain.tag.constants.TagValidationConstants.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -96,7 +97,7 @@ class TagControllerTest extends BaseTest {
 	void changTagNameFailTest() throws Exception {
 		//given
 		Member member = memberRepository.findById(2L).orElse(null);
-		Tag savedTag = tagRepository.save(new Tag("TAG", "COLOR", member));
+		Tag savedTag = tagRepository.save(new Tag("TAG", "COLOR", member, new LinkedList<>()));
 
 		ChangeTagName changeReqeust = new ChangeTagName(savedTag.getId(), "NEW NAME");
 
